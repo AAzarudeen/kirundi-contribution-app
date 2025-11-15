@@ -1,0 +1,29 @@
+2025-11-15 15:06:20,884 - INFO - Created submissions directory at: /home/samandari/Documents/ASYST/Perso/submissions
+2025-11-15 15:06:20,884 - INFO - Please add your contributor CSV files to this folder and run again.
+2025-11-15 15:07:24,136 - ERROR - FATAL: Main metadata file not found at '/home/samandari/Documents/ASYST/Perso/Kirundi_Game/metadata.csv'
+2025-11-15 15:07:42,587 - ERROR - FATAL: Main metadata file not found at '/home/samandari/Documents/ASYST/Perso/Kirundi_Game/metadata.csv'
+2025-11-15 15:09:43,544 - INFO - Created submissions directory at: /home/samandari/Documents/ASYST/Perso/submissions
+2025-11-15 15:09:43,546 - INFO - Please add your contributor CSV files to this folder and run again.
+2025-11-15 15:10:11,356 - ERROR - FATAL: Main metadata file not found at '/home/samandari/Documents/ASYST/Perso/Kirundi_Game/metadata.csv'
+2025-11-15 15:14:09,837 - ERROR - FATAL: Could not read main metadata.csv. Error: Error tokenizing data. C error: Expected 6 fields in line 12, saw 7
+
+2025-11-15 15:21:50,304 - ERROR - FATAL: Could not read main metadata.csv. Error: Expected 6 fields in line 12, saw 7
+2025-11-15 15:22:02,000 - ERROR - FATAL: Could not read main metadata.csv. Error: Expected 6 fields in line 12, saw 7
+2025-11-15 15:23:56,833 - INFO - Loaded 585 rows and 585 unique Kirundi phrases from master file.
+2025-11-15 15:23:56,834 - INFO - Processing file: French_To_Kirundi.csv
+2025-11-15 15:23:56,836 - INFO - ADDING new row 587: 'Mwaramutse, amakuru yanyu??'
+2025-11-15 15:23:56,837 - INFO - Processing file: Kirundi_To_French.csv
+2025-11-15 15:23:56,842 - INFO - UPDATED row 179: Set translation for 'Data na mama bagiye gukora, Bayaga aherekeje keza'
+2025-11-15 15:23:56,846 - INFO - --- Merge Complete ---
+2025-11-15 15:23:56,846 - INFO - Updated 1 existing translations.
+2025-11-15 15:23:56,847 - INFO - Added 1 new sentences.
+2025-11-15 15:23:56,894 - INFO - SUCCESS! Your main file '../Kirundi_Dataset/metadata.csv' has been saved.
+2025-11-15 15:42:25,620 - INFO - Loaded 586 rows and 584 unique normalized Kirundi phrases from master file.
+2025-11-15 15:42:25,621 - INFO - Processing file: French_To_Kirundi.csv
+2025-11-15 15:42:25,623 - INFO - ADDING new row 588: 'Ateka neza'
+2025-11-15 15:42:25,623 - INFO - Processing file: Kirundi_To_French.csv
+2025-11-15 15:42:25,626 - INFO - UPDATED row 354: Set translation for 'Uyo mwana na we ati: «Nyoku, nzogerageza kuja ndaza kukuvomera.»'
+2025-11-15 15:42:25,685 - INFO - --- Merge Complete ---
+2025-11-15 15:42:25,686 - INFO - Updated 1 existing translations.
+2025-11-15 15:42:25,686 - INFO - Added 1 new sentences.
+2025-11-15 15:42:25,690 - INFO - SUCCESS! Your main file '../Kirundi_Dataset/metadata.csv' has been saved.

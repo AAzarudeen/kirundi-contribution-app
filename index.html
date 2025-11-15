@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ijwi ry'Ikirundi AI: Contribution Hub</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
+    <!-- Header -->
+    <header class="relative overflow-hidden">
+        <!-- Burundian Flag Gradient Background -->
+        <div class="absolute inset-0 bg-gradient-to-r from-red-600 via-white to-green-600 opacity-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-green-50 via-white to-red-50"></div>
+        
+        <!-- Main Header Content -->
+        <div class="relative bg-white/95 backdrop-blur-sm shadow-2xl border-b-4 border-gradient">
+            <div class="container mx-auto px-4 py-6 md:py-8">
+                <!-- Logo and Title Section -->
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-3 md:space-y-0 md:space-x-6 mb-4">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0">
+                        <img src="icon.png" alt="Ijwi ry'Ikirundi AI Logo" 
+                             class="w-14 h-14 md:w-16 md:h-16 rounded-full shadow-lg ring-3 ring-green-500/30 hover:ring-green-500/50 transition-all duration-300 transform hover:scale-105">
+                    </div>
+                    
+                    <!-- Title and Subtitle -->
+                    <div class="text-center md:text-left">
+                        <h1 class="font-poppins text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-green-600 via-red-600 to-green-700 bg-clip-text text-transparent leading-tight">
+                            Ijwi ry'Ikirundi AI
+                        </h1>
+                        <div class="font-poppins text-base md:text-lg font-semibold text-gray-700 mt-1">
+                            Contribution Hub
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Mission Statement -->
+                <div class="text-center max-w-3xl mx-auto">
+                    <p class="font-inter text-base md:text-lg text-gray-700 leading-relaxed mb-3">
+                        Help us build the future of 
+                        <span class="font-semibold text-green-700">Kirundi language AI</span> 
+                        through community collaboration
+                    </p>
+                    <div class="flex items-center justify-center space-x-2 text-xs md:text-sm text-gray-600">
+                        <span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                        <span class="font-medium">Preserving Heritage</span>
+                        <span class="w-1.5 h-1.5 bg-white border-2 border-gray-400 rounded-full"></span>
+                        <span class="font-medium">Building Future</span>
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                        <span class="font-medium">Empowering Community</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decorative Bottom Border -->
+        <div class="h-1 bg-gradient-to-r from-red-500 via-white to-green-500"></div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container mx-auto px-4 py-8">
+        
+        <!-- Main Menu -->
+        <div id="main-menu" class="fade-in">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-10 card-modern">
+                    <h2 class="font-poppins text-3xl md:text-4xl font-bold text-center mb-4 text-gray-800">Choose Your Contribution Level</h2>
+                    <p class="font-inter text-center text-gray-600 mb-8 md:mb-12 max-w-2xl mx-auto">
+                        Select the type of contribution you'd like to make to help build our Kirundi AI dataset
+                    </p>
+                    
+                    <div class="grid gap-6 md:gap-8">
+                        <!-- Easy Level Button -->
+                        <button onclick="initEasyMode()" 
+                                class="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-6 md:py-8 px-6 md:px-8 rounded-xl text-lg md:text-xl btn-modern group">
+                            <div class="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4">
+                                <span class="text-3xl md:text-4xl">📝</span>
+                                <div class="text-center md:text-left">
+                                    <div class="font-poppins font-bold">Easy Level: Translate Phrases</div>
+                                    <p class="font-inter text-green-100 text-sm md:text-base mt-1 opacity-90">
+                                        Translate existing Kirundi phrases to French
+                                    </p>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- Medium Level Button -->
+                        <button onclick="initMediumMode()" 
+                                class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-6 md:py-8 px-6 md:px-8 rounded-xl text-lg md:text-xl btn-modern group">
+                            <div class="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4">
+                                <span class="text-3xl md:text-4xl">🔄</span>
+                                <div class="text-center md:text-left">
+                                    <div class="font-poppins font-bold">Medium Level: Translate French to Kirundi</div>
+                                    <p class="font-inter text-blue-100 text-sm md:text-base mt-1 opacity-90">
+                                        Translate French sentences to Kirundi
+                                    </p>
+                                </div>
+                            </div>
+                        </button>
+
+                        <!-- Hard Level Button -->
+                        <button onclick="initHardMode()" 
+                                class="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold py-6 md:py-8 px-6 md:px-8 rounded-xl text-lg md:text-xl btn-modern group">
+                            <div class="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 md:space-x-4">
+                                <span class="text-3xl md:text-4xl">✍️</span>
+                                <div class="text-center md:text-left">
+                                    <div class="font-poppins font-bold">Hard Level: Add New Sentences</div>
+                                    <p class="font-inter text-purple-100 text-sm md:text-base mt-1 opacity-90">
+                                        Create new Kirundi-French sentence pairs
+                                    </p>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Easy Level UI -->
+        <div id="easy-mode" class="hidden fade-in">
+            <div class="max-w-5xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-10 card-modern">
+                    <!-- Header -->
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 space-y-4 md:space-y-0">
+                        <h2 class="text-2xl md:text-3xl font-bold text-green-700">Easy Level: Translation Game</h2>
+                        <button onclick="backToMainMenu()" 
+                                class="bg-gray-500 hover:bg-gray-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg transition-colors btn-modern text-sm md:text-base">
+                            ← Back to Menu
+                        </button>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="loading-easy" class="text-center py-12">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto mb-4"></div>
+                        <p class="text-xl text-gray-600">Fetching live data from Hugging Face...</p>
+                        <p class="text-sm text-gray-500 mt-2">Loading untranslated phrases from the official dataset</p>
+                    </div>
+
+                    <!-- Game UI -->
+                    <div id="game-ui" class="hidden">
+                        <!-- Progress -->
+                        <div class="mb-6">
+                            <div class="flex justify-between text-sm text-gray-600 mb-2">
+                                <span>Progress</span>
+                                <span id="progress-text">0 / 20</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div id="progress-bar" class="bg-green-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Kirundi Phrase -->
+                        <div class="mb-6">
+                            <label class="block text-lg font-semibold text-gray-700 mb-2">Kirundi Phrase:</label>
+                            <div id="kirundi-phrase" class="bg-green-50 border-2 border-green-200 rounded-lg p-4 text-2xl font-medium text-gray-800 min-h-[80px] flex items-center">
+                                <!-- Phrase will be inserted here -->
+                            </div>
+                        </div>
+
+                        <!-- French Translation Input -->
+                        <div class="mb-6">
+                            <label for="french-input" class="block text-lg font-semibold text-gray-700 mb-2">Your French Translation:</label>
+                            <textarea id="french-input" 
+                                    class="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-green-500 focus:outline-none text-lg resize-none"
+                                    rows="3" 
+                                    placeholder="Type your French translation here..."></textarea>
+                        </div>
+
+                        <!-- Error Message -->
+                        <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                            Please enter a translation before continuing.
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="text-center">
+                            <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-4">
+                                <button onclick="skipEasyPhrase()" 
+                                        class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-xl text-base md:text-lg transition-colors btn-modern order-2 sm:order-1">
+                                    ⏭️ Skip
+                                </button>
+                                <button id="next-button" onclick="nextEasyPhrase()" 
+                                        class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-4 px-8 rounded-xl text-lg md:text-xl transition-colors btn-modern order-1 sm:order-2">
+                                    Submit Translation →
+                                </button>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-3 text-sm text-gray-600">
+                                💡 <strong>Shortcuts:</strong> Ctrl+Enter to submit • Escape to skip
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Completion UI -->
+                    <div id="completion-ui" class="hidden text-center py-12">
+                        <div class="text-6xl mb-4">🎉</div>
+                        <h3 class="text-2xl font-bold text-green-700 mb-4">Congratulations!</h3>
+                        <p class="text-lg text-gray-600 mb-6">You've completed a batch of translations!</p>
+                        
+                        <!-- Download Button -->
+                        <div class="mb-6">
+                            <button onclick="downloadTranslations()" 
+                                    class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg text-xl transition-colors pulse-button">
+                                📥 Download Kirundi_To_French.csv
+                            </button>
+                        </div>
+                        
+                        <!-- WhatsApp Share Section -->
+                        <div id="whatsapp-section" class="hidden">
+                            <div class="bg-green-50 border-2 border-green-200 rounded-lg p-6 max-w-md mx-auto mb-4">
+                                <h4 class="text-lg font-semibold text-green-800 mb-2">📱 Send CSV File</h4>
+                                <p class="text-green-700 text-sm mb-4">
+                                    Click to open WhatsApp, then attach your CSV file:
+                                </p>
+                                <button onclick="shareToWhatsApp()" 
+                                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors w-full">
+                                    💬 Open WhatsApp Chat
+                                </button>
+                            </div>
+                            <p class="text-xs text-gray-500">
+                                ⚠️ You'll need to manually attach the CSV file after WhatsApp opens
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medium Level UI -->
+        <div id="medium-mode" class="hidden fade-in">
+            <div class="max-w-5xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-10 card-modern">
+                    <!-- Header -->
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 space-y-4 md:space-y-0">
+                        <h2 class="text-2xl md:text-3xl font-bold text-blue-700">Medium Level: Translate French to Kirundi</h2>
+                        <button onclick="backToMainMenu()" 
+                                class="bg-gray-500 hover:bg-gray-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg transition-colors btn-modern text-sm md:text-base">
+                            ← Back to Menu
+                        </button>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="loading-medium" class="text-center py-12">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+                        <p class="text-xl text-gray-600">Loading French prompts and checking database...</p>
+                        <p class="text-sm text-gray-500 mt-2">Preparing your translation session</p>
+                    </div>
+
+                    <!-- Game UI -->
+                    <div id="medium-game-ui" class="hidden">
+                        <!-- Instructions -->
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                            <p class="text-blue-800">Translate French sentences to Kirundi. Your translations will be checked against our database to avoid duplicates.</p>
+                        </div>
+
+                        <!-- Progress -->
+                        <div class="mb-6">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm font-medium text-blue-700">Progress</span>
+                                <span id="medium-progress-text" class="text-sm text-gray-600">0 / 20</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div id="medium-progress-bar" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- French Sentence Display -->
+                        <div class="mb-6">
+                            <label class="block text-lg font-semibold text-gray-700 mb-3">French Sentence:</label>
+                            <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 text-center">
+                                <p id="french-sentence" class="text-xl md:text-2xl font-medium text-blue-900 leading-relaxed">
+                                    <!-- French sentence will be displayed here -->
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Kirundi Translation Input -->
+                        <div class="mb-6">
+                            <label for="kirundi-translation" class="block text-lg font-semibold text-gray-700 mb-2">Your Kirundi Translation:</label>
+                            <textarea id="kirundi-translation" 
+                                    class="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none text-lg resize-none"
+                                    rows="3" 
+                                    placeholder="Type your Kirundi translation here..."></textarea>
+                        </div>
+
+                        <!-- Error Message -->
+                        <div id="medium-error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                            <!-- Error message will be inserted here -->
+                        </div>
+
+                        <!-- Success Message -->
+                        <div id="medium-success-message" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                            Translation added successfully!
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="text-center">
+                            <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-4">
+                                <button onclick="skipMediumSentence()" 
+                                        class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-xl text-base md:text-lg transition-colors btn-modern order-2 sm:order-1">
+                                    ⏭️ Skip
+                                </button>
+                                <button id="medium-submit-button" onclick="submitMediumTranslation()" 
+                                        class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-8 rounded-xl text-lg md:text-xl transition-colors btn-modern order-1 sm:order-2">
+                                    Submit Translation →
+                                </button>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-3 text-sm text-gray-600">
+                                💡 <strong>Shortcuts:</strong> Ctrl+Enter to submit • Escape to skip
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Completion UI -->
+                    <div id="medium-completion-ui" class="hidden text-center py-12">
+                        <div class="text-6xl mb-4">🎉</div>
+                        <h3 class="text-2xl font-bold text-blue-700 mb-4">Excellent Work!</h3>
+                        <p class="text-lg text-gray-600 mb-6">You've completed a batch of French to Kirundi translations!</p>
+                        
+                        <!-- Download Button -->
+                        <div class="mb-6">
+                            <button onclick="downloadMediumTranslations()" 
+                                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-xl transition-colors pulse-button">
+                                📥 Download French_To_Kirundi.csv
+                            </button>
+                        </div>
+                        
+                        <!-- WhatsApp Share Section -->
+                        <div id="whatsapp-section-medium" class="hidden">
+                            <div class="bg-blue-50 border-2 border-blue-200 rounded-lg p-6 max-w-md mx-auto mb-4">
+                                <h4 class="text-lg font-semibold text-blue-800 mb-2">📱 Send CSV File</h4>
+                                <p class="text-blue-700 text-sm mb-4">
+                                    Click to open WhatsApp, then attach your CSV file:
+                                </p>
+                                <button onclick="shareMediumToWhatsApp()" 
+                                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors w-full">
+                                    💬 Open WhatsApp Chat
+                                </button>
+                            </div>
+                            <p class="text-xs text-gray-500 text-center mt-2">
+                                ⚠️ You'll need to manually attach the CSV file after WhatsApp opens
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hard Level UI -->
+        <div id="hard-mode" class="hidden fade-in">
+            <div class="max-w-5xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-10 card-modern">
+                    <!-- Header -->
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 space-y-4 md:space-y-0">
+                        <h2 class="text-2xl md:text-3xl font-bold text-purple-700">Hard Level: Add New Sentences</h2>
+                        <button onclick="backToMainMenu()" 
+                                class="bg-gray-500 hover:bg-gray-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg transition-colors btn-modern text-sm md:text-base">
+                            ← Back to Menu
+                        </button>
+                    </div>
+
+                    <!-- Instructions -->
+                    <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mb-6">
+                        <p class="text-purple-800">Create new Kirundi-French sentence pairs. Make sure your Kirundi sentences are meaningful and contain at least 4 words.</p>
+                    </div>
+
+                    <!-- Counter -->
+                    <div class="mb-6">
+                        <p id="sentence-counter" class="text-lg font-semibold text-gray-700">You have added 0 sentences.</p>
+                    </div>
+
+                    <!-- Input Form -->
+                    <div class="space-y-6 mb-8">
+                        <!-- Kirundi Input -->
+                        <div>
+                            <label for="new-kirundi" class="block text-lg font-semibold text-gray-700 mb-2">New Kirundi Sentence:</label>
+                            <textarea id="hard-new-kirundi" 
+                                    class="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none text-lg resize-none"
+                                    rows="3" 
+                                    placeholder="Enter a new Kirundi sentence..."></textarea>
+                        </div>
+
+                        <!-- French Input -->
+                        <div>
+                            <label for="hard-new-french" class="block text-lg font-semibold text-gray-700 mb-2">French Translation:</label>
+                            <textarea id="hard-new-french" 
+                                    class="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none text-lg resize-none"
+                                    rows="3" 
+                                    placeholder="Enter the French translation..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Error Message -->
+                    <div id="hard-error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                        <!-- Error message will be inserted here -->
+                    </div>
+
+                    <!-- Success Message -->
+                    <div id="hard-success-message" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                        Sentence pair added successfully!
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="addHardSentence()" 
+                                class="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold py-4 px-8 rounded-xl text-lg transition-colors btn-modern">
+                            ➕ Add Sentence
+                        </button>
+                        
+                        <button id="download-hard-sentences" onclick="downloadHardSentences()" 
+                                class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-4 px-8 rounded-xl text-lg transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed btn-modern"
+                                disabled>
+                            📥 Download My Sentences
+                        </button>
+                    </div>
+                    
+                    <!-- WhatsApp Share Section for Hard Level -->
+                    <div id="whatsapp-section-hard" class="hidden mt-6">
+                        <div class="bg-purple-50 border-2 border-purple-200 rounded-lg p-6 max-w-md mx-auto">
+                            <h4 class="text-lg font-semibold text-purple-800 mb-2">📱 Send CSV File</h4>
+                            <p class="text-purple-700 text-sm mb-4">
+                                Click to open WhatsApp, then attach your CSV file:
+                            </p>
+                            <button onclick="shareHardSentencesToWhatsApp()" 
+                                    class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors w-full">
+                                💬 Open WhatsApp Chat
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 text-center mt-2">
+                            ⚠️ You'll need to manually attach the CSV file after WhatsApp opens
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="relative bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white py-12 mt-16 overflow-hidden">
+        <!-- Decorative Top Border -->
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-white to-green-500"></div>
+        
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-4 left-4 w-8 h-8 border-2 border-red-500 rounded-full"></div>
+            <div class="absolute top-8 right-8 w-6 h-6 border-2 border-green-500 rounded-full"></div>
+            <div class="absolute bottom-4 left-1/4 w-4 h-4 border-2 border-white rounded-full"></div>
+            <div class="absolute bottom-8 right-1/3 w-5 h-5 border-2 border-red-500 rounded-full"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative">
+            <div class="text-center">
+                <div class="mb-6">
+                    <h3 class="font-poppins text-2xl md:text-3xl font-bold mb-3 bg-gradient-to-r from-green-400 via-white to-red-400 bg-clip-text text-transparent">
+                        🇧🇮 Ijwi ry'Ikirundi AI
+                    </h3>
+                    <p class="font-inter text-gray-300 text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+                        Preserving and advancing the Kirundi language through artificial intelligence and community collaboration.
+                    </p>
+                </div>
+                
+                <div class="border-t border-gray-600 pt-6">
+                    <p class="font-inter text-gray-300 text-base md:text-lg mb-2">
+                        Powered by <span class="font-poppins text-green-400 font-bold text-lg">Ijwi Ry'Ikirundi AI Team</span>
+                    </p>
+                    <div class="flex items-center justify-center space-x-3 text-sm text-gray-400">
+                        <span>© 2025</span>
+                        <span class="w-1 h-1 bg-red-500 rounded-full"></span>
+                        <span>Built with ❤️ for the Kirundi community</span>
+                        <span class="w-1 h-1 bg-green-500 rounded-full"></span>
+                        <span>🇧🇮 Burundi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

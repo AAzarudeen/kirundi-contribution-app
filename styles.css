@@ -1,0 +1,375 @@
+/* Professional Kirundi Contribution App Styles */
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* Font Families */
+.font-poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.font-inter {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Header Enhancements */
+.border-gradient {
+    border-image: linear-gradient(90deg, #ef4444, #ffffff, #22c55e) 1;
+}
+
+/* Logo Animation */
+.logo-glow {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+    transition: all 0.3s ease;
+}
+
+.logo-glow:hover {
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.5);
+    transform: scale(1.05) rotate(5deg);
+}
+
+/* Text Gradient Animation */
+.text-gradient-animate {
+    background: linear-gradient(-45deg, #22c55e, #ef4444, #22c55e, #ef4444);
+    background-size: 400% 400%;
+    animation: gradientShift 4s ease-in-out infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Header Background Pattern */
+.header-pattern {
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(239, 68, 68, 0.1) 0%, transparent 50%);
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.pulse-button {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1); 
+    }
+    50% { 
+        transform: scale(1.02); 
+    }
+}
+
+.slide-up {
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Additional custom styles */
+.gradient-bg {
+    background: linear-gradient(135deg, #f0f9ff 0%, #ecfdf5 100%);
+}
+
+.card-shadow {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.button-hover-scale {
+    transition: all 0.3s ease;
+}
+
+.button-hover-scale:hover {
+    transform: scale(1.05);
+}
+
+/* Loading spinner */
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #10b981;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Progress bar animation */
+.progress-bar {
+    transition: width 0.3s ease-in-out;
+}
+
+/* Input focus styles */
+.input-focus:focus {
+    outline: none;
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+/* Button styles */
+.btn-primary {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Card styles */
+.main-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Text styles */
+.text-gradient {
+    background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Mobile-First Responsive Design */
+
+/* Enhanced Button Styles */
+.btn-modern {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.15);
+}
+
+.btn-modern:active {
+    transform: translateY(0);
+}
+
+/* Card Enhancements */
+.card-modern {
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card-modern:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    /* Header adjustments */
+    header h1 {
+        font-size: 1.875rem !important; /* text-3xl */
+        line-height: 1.2;
+        padding: 0 1rem;
+    }
+    
+    header p {
+        font-size: 0.875rem !important; /* text-sm */
+        padding: 0 1rem;
+    }
+    
+    /* Container padding */
+    .container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    /* Button adjustments */
+    .btn-mobile {
+        padding: 0.75rem 1.5rem !important;
+        font-size: 1rem !important;
+        width: 100%;
+        margin-bottom: 0.75rem;
+    }
+    
+    /* Card padding */
+    .card-mobile {
+        padding: 1.5rem !important;
+        margin: 0.5rem !important;
+    }
+    
+    /* Text adjustments */
+    .text-mobile-lg {
+        font-size: 1.25rem !important;
+        line-height: 1.4;
+    }
+    
+    .text-mobile-base {
+        font-size: 1rem !important;
+        line-height: 1.5;
+    }
+    
+    /* Spacing adjustments */
+    .space-mobile {
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Progress bar mobile */
+    .progress-mobile {
+        height: 0.5rem !important;
+        border-radius: 0.25rem !important;
+    }
+    
+    /* Input fields mobile */
+    .input-mobile {
+        padding: 0.875rem !important;
+        font-size: 1rem !important;
+        border-radius: 0.5rem !important;
+    }
+    
+    /* WhatsApp section mobile */
+    .whatsapp-mobile {
+        padding: 1rem !important;
+        margin: 1rem 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small screens */
+    header h1 {
+        font-size: 1.5rem !important; /* text-2xl */
+    }
+    
+    .btn-xs-mobile {
+        padding: 0.625rem 1rem !important;
+        font-size: 0.875rem !important;
+    }
+    
+    .card-xs-mobile {
+        padding: 1rem !important;
+        margin: 0.25rem !important;
+    }
+    
+    /* Stack buttons vertically on very small screens */
+    .flex-mobile-stack {
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+    }
+}
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+    .btn-modern:hover {
+        transform: none;
+    }
+    
+    .card-modern:hover {
+        transform: none;
+    }
+    
+    /* Larger touch targets */
+    button, .btn-modern {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Success and error message styles */
+.message-slide-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Kirundi phrase display */
+.kirundi-phrase {
+    background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+    border: 2px solid #bbf7d0;
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+}
+
+/* French input styling */
+.french-input {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.5;
+}
+
+/* Counter styling */
+.counter-badge {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-weight: bold;
+    display: inline-block;
+}
