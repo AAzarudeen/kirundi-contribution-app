@@ -28,10 +28,8 @@ The **Ijwi ry'Ikirundi AI Contribution Hub** helps crowdsource Kirundi language 
 - Duplicate checking against existing database
 - Downloads as `French_To_Kirundi.csv`
 
-### ✍️ Hard Level: Add New Sentences
-- Create original Kirundi-French sentence pairs
-- Input validation (minimum 4 words)
-- Downloads as `my_new_sentences.csv`
+### ✍🏾 Hard Level: Coming Soon ...
+
 
 **All levels include:**
 - Keyboard shortcuts (Ctrl+Enter to submit, Escape to skip)
@@ -67,10 +65,15 @@ Kirundi_Transcription,French_Translation
 "Muraho, amakuru?","Bonjour, comment allez-vous?"
 ```
 
-## 🤝 Contributing
+## 🫱🏽‍🫲🏿 Contributing
 
-**Contact**: WhatsApp +257 77 568 903  
+**Contact**: 📱 WhatsApp +257 77 568 903  
 **Team**: Ijwi Ry'Ikirundi AI Team
+
+### 📞 Support
+For questions, feedback, or technical support:
+- 💬 **WhatsApp**: [+257 77 568 903](https://wa.me/25777568903)
+- 📧 **Email**: Junior_julescesar10@hotmail.com
 
 ---
 
