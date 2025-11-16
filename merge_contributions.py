@@ -14,20 +14,15 @@ logging.basicConfig(
     handlers=[logging.FileHandler("merge.log"), logging.StreamHandler()]
 )
 
-# --- NEW NORMALIZATION FUNCTION ---
+# --- NORMALIZATION FUNCTION ---
 def normalize_text(text):
     """
-    Cleans text for a robust comparison.
-    1. Converts to lowercase.
-    2. Removes all punctuation and special characters.
-    3. Trims whitespace from ends.
-    4. Squeezes multiple spaces down to one.
+    Cleans text for a robust comparison (lowercase, no punctuation).
     """
     if pd.isna(text):
         return ""
     text = str(text).lower()
     # Remove punctuation (keeps letters, numbers, and spaces)
-    # This regex is broad and removes quotes, commas, periods, etc.
     text = re.sub(r'[^\w\s]', '', text)
     # Squeeze multiple whitespace characters into one
     text = re.sub(r'\s+', ' ', text)
@@ -86,13 +81,15 @@ def process_submissions(main_df, existing_kirundi_normalized, submissions_dir, p
             sub_df = pd.read_csv(filepath, encoding='utf-8-sig')
             sub_df.columns = [col.strip() for col in sub_df.columns]
 
-            if "Kirundi_Transcription" not in sub_df.columns or "French_Translation" not in sub_df.columns:
-                logging.warning(f"SKIPPING: File {filename} has incorrect headers. Moving to processed.")
-                shutil.move(filepath, os.path.join(processed_dir, filename))
-                continue
-
             # --- 1. Logic for "Medium Level" (French_To_Kirundi) ---
+            # These files add BRAND NEW rows. They have 2 columns.
             if filename.startswith("French_To_Kirundi"):
+                
+                if "Kirundi_Transcription" not in sub_df.columns or "French_Translation" not in sub_df.columns:
+                    logging.warning(f"SKIPPING: File {filename} has incorrect headers. Moving to processed.")
+                    shutil.move(filepath, os.path.join(processed_dir, filename))
+                    continue
+
                 for index, row in sub_df.iterrows():
                     kirundi_raw = row['Kirundi_Transcription']
                     french = row['French_Translation']
@@ -100,7 +97,6 @@ def process_submissions(main_df, existing_kirundi_normalized, submissions_dir, p
                     if pd.isna(kirundi_raw) or pd.isna(french):
                         continue 
 
-                    # --- UPGRADED LOGIC ---
                     kirundi_normalized = normalize_text(kirundi_raw)
 
                     if kirundi_normalized and kirundi_normalized not in existing_kirundi_normalized:
@@ -121,34 +117,70 @@ def process_submissions(main_df, existing_kirundi_normalized, submissions_dir, p
                         logging.warning(f"DUPLICATE (skipping): '{kirundi_raw}' from {filename} already exists in master.")
             
             # --- 2. Logic for "Easy Level" (Kirundi_To_French) ---
+            # These files UPDATE existing rows. They have 3 columns.
             elif filename.startswith("Kirundi_To_French"):
+                
+                if "Corrected_Kirundi" not in sub_df.columns or "Original_Kirundi" not in sub_df.columns:
+                    logging.warning(f"SKIPPING: File {filename} is an old version or has incorrect headers. Moving to processed.")
+                    shutil.move(filepath, os.path.join(processed_dir, filename))
+                    continue
+
                 for index, row in sub_df.iterrows():
-                    kirundi_raw = row['Kirundi_Transcription']
+                    # Get all 3 columns.
+                    original_kirundi_raw = row['Original_Kirundi']
+                    corrected_kirundi_raw = row['Corrected_Kirundi']
                     french = row['French_Translation']
 
-                    if pd.isna(kirundi_raw) or pd.isna(french):
+                    if pd.isna(corrected_kirundi_raw) or pd.isna(french):
                         continue 
                     
-                    # --- UPGRADED LOGIC ---
-                    kirundi_normalized = normalize_text(kirundi_raw)
+                    original_normalized = normalize_text(original_kirundi_raw)
                     
-                    # Find the row in the *main* dataframe to update
-                    # by matching the *normalized* text
-                    mask = (
-                        (main_df['normalized_kirundi'] == kirundi_normalized) &
-                        (main_df['French_Translation'].isna())
-                    )
+                    # --- NEW, MORE DETAILED LOGIC ---
                     
-                    if mask.any():
-                        indices_to_update = main_df.index[mask]
+                    # 1. First, find all rows that match the original Kirundi text
+                    kirundi_mask = (main_df['normalized_kirundi'] == original_normalized)
+                    
+                    if not kirundi_mask.any():
+                        # Case 1: Kirundi text not found in master file.
+                        logging.warning(f"SKIPPING: Original text '{original_kirundi_raw}' from {filename} no longer exists in master file.")
+                        continue # Go to the next row in the submission file
+
+                    # 2. If we're here, text was found. Now, check if it needs translation.
+                    translation_mask = (main_df['French_Translation'].isna())
+                    final_mask = kirundi_mask & translation_mask
+
+                    if final_mask.any():
+                        # Case 2: Match found, and it needs translation. (The "good" path)
+                        indices_to_update = main_df.index[final_mask]
                         for idx in indices_to_update:
-                            main_df.loc[idx, 'French_Translation'] = french.strip()
-                            # Get the original (non-normalized) text for the log
-                            original_text = main_df.loc[idx, 'Kirundi_Transcription']
-                            logging.info(f"UPDATED row {idx + 2}: Set translation for '{original_text}'")
+                            
+                            original_from_master = main_df.loc[idx, 'Kirundi_Transcription']
+                            corrected_from_sub = corrected_kirundi_raw.strip()
+                            french_from_sub = french.strip()
+
+                            # Update BOTH the Kirundi text and the French translation
+                            main_df.loc[idx, 'Kirundi_Transcription'] = corrected_from_sub
+                            main_df.loc[idx, 'French_Translation'] = french_from_sub
+                            main_df.loc[idx, 'normalized_kirundi'] = normalize_text(corrected_from_sub)
+                            
+                            logging.info(f"UPDATED row {idx + 2}:")
+                            if normalize_text(original_from_master) != normalize_text(corrected_from_sub):
+                                logging.info(f"  -> OLD text:    '{original_from_master}'")
+                                logging.info(f"  -> NEW text:    '{corrected_from_sub}'")
+                            else:
+                                logging.info(f"  -> Text:        '{original_from_master}' (unchanged)")
+                            logging.info(f"  -> Added French:  '{french_from_sub}'")
+                            
                             updated_count += 1
                     else:
-                        logging.warning(f"SKIPPING: '{kirundi_raw}' from {filename} is already translated or doesn't exist.")
+                        # Case 3: Match found, but it's *already translated*.
+                        # This is the new log you wanted.
+                        matched_indices = main_df.index[kirundi_mask].tolist()
+                        matched_rows = [str(i + 2) for i in matched_indices] # Add 2 for 1-based CSV line number
+                        logging.warning(f"SKIPPING: Original text '{original_kirundi_raw}' from {filename} is already translated in master file at row(s): {', '.join(matched_rows)}")
+                    
+                    # --- END OF NEW LOGIC ---
 
             # --- 3. Move the processed file ---
             shutil.move(filepath, os.path.join(processed_dir, filename))
@@ -166,18 +198,16 @@ def process_submissions(main_df, existing_kirundi_normalized, submissions_dir, p
         main_df = pd.concat([main_df, new_rows_df], ignore_index=True)
 
     # --- 5. Clean up ---
-    # Drop the temporary 'normalized_kirundi' column before saving
     if 'normalized_kirundi' in main_df.columns:
         main_df = main_df.drop(columns=['normalized_kirundi'])
 
     logging.info(f"--- Merge Complete ---")
-    logging.info(f"Updated {updated_count} existing translations.")
+    logging.info(f"Updated {updated_count} existing rows (corrections/translations).")
     logging.info(f"Added {new_count} new sentences.")
     
     return main_df
 
 def main():
-    # --- Setup ---
     base_dir = os.path.abspath(os.path.dirname(__file__))
     
     # --- ‼️ YOU MUST EDIT THIS LINE ‼️ ---

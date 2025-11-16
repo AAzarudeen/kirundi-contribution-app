@@ -8,6 +8,9 @@ let progress = 0;
 let mediumProgress = 0;
 const batchSize = 20;
 
+// Language toggle variables
+let currentLanguage = 'en'; // Default to English
+
 // Medium Level variables
 let frenchPrompts = [];
 let existingKirundiPhrases = new Set();
@@ -225,43 +228,29 @@ async function loadTranslationData() {
         
     } catch (error) {
         console.error('Error loading live data:', error);
-        // Fallback to sample data for demo/offline use
-        console.warn('Using sample data for demonstration');
-        phrasesToTranslate = [
-            "Muraho, amakuru?",
-            "Ndagukunda cyane.",
-            "Ubu ni ukwezi gute?",
-            "Ndashaka kurya ibiryo.",
-            "Ejo hazaza imvura.",
-            "Tugende ku isoko.",
-            "Ni ukwezi kwa kane.",
-            "Ndashaka amazi.",
-            "Uyu munsi ni mwiza.",
-            "Ndagiye ku kazi.",
-            "Ubu ni saa zingahe?",
-            "Ndashaka gusinzira.",
-            "Tugende mu ishuri.",
-            "Ni iyihe tariki?",
-            "Ndashaka kuvuga n'umunyeshuri.",
-            "Uyu mwaka ni mwiza.",
-            "Ndagiye mu bitaro.",
-            "Tugende ku cyumba.",
-            "Ni ryari tuzongera kubonana?",
-            "Ndashaka kwiga Igifaransa."
-        ];
-        
-        // Filter out already submitted phrases from sample data too
-        const submittedPhrases = getSubmittedPhrases();
-        const originalCount = phrasesToTranslate.length;
-        phrasesToTranslate = phrasesToTranslate.filter(phrase => !submittedPhrases.includes(phrase));
-        
-        console.log(`Sample data: ${originalCount} phrases, ${originalCount - phrasesToTranslate.length} already submitted`);
-        console.log(`${phrasesToTranslate.length} new sample phrases available for translation`);
-        
-        shuffleArray(phrasesToTranslate);
-        
-        if (phrasesToTranslate.length === 0) {
-            console.warn('All sample phrases have been submitted. Please check your internet connection to load new phrases.');
+
+        // Do NOT use any fallback demo data.
+        // Instead, show a friendly, bilingual error UI and prevent the game from starting.
+        phrasesToTranslate = [];
+
+        // Hide loading spinner and game UI if visible
+        hideElement('loading-easy');
+        hideElement('game-ui');
+
+        // Show dedicated Easy Level error container if it exists
+        const easyError = document.getElementById('easy-error');
+        if (easyError) {
+            // Always hide completion UI if showing error
+            const completionUI = document.getElementById('completion-ui');
+            if (completionUI) completionUI.classList.add('hidden');
+            easyError.classList.remove('hidden');
+        } else {
+            // Fallback: simple alert if the container is missing
+            const isFrench = (typeof currentLanguage !== 'undefined' && currentLanguage === 'fr');
+            const message = isFrench
+                ? "Erreur lors du chargement des données en direct depuis Hugging Face. Veuillez vérifier votre connexion Internet, puis réessayer depuis le menu principal."
+                : "Error loading live data from Hugging Face. Please check your internet connection, then try again from the main menu.";
+            alert(message);
         }
     }
 }
@@ -374,6 +363,9 @@ function showNextEasyPhrase() {
     
     // Hide error message
     hideElement('error-message');
+    
+    // Reset correction box for new phrase
+    resetCorrectionBox();
 }
 
 function updateProgress() {
@@ -390,10 +382,16 @@ function nextEasyPhrase() {
         return;
     }
 
-    // Add translation to array
+    // Get original and corrected Kirundi
+    const originalKirundi = phrasesToTranslate[progress];
+    const correctionBox = document.getElementById('correction-box');
+    const correctedKirundi = correctionBox.value.trim() || originalKirundi; // Use correction if available, otherwise original
+    
+    // Add translation to array with three pieces of information
     userTranslations.push({
-        kirundi: phrasesToTranslate[progress],
-        french: frenchInput
+        original_kirundi: originalKirundi,
+        corrected_kirundi: correctedKirundi,
+        french_translation: frenchInput
     });
 
     progress++;
@@ -404,10 +402,10 @@ function skipEasyPhrase() {
     // Simply move to the next phrase without saving anything
     progress++;
     showNextEasyPhrase();
-    
+        
     // Hide any error messages
     hideElement('error-message');
-    
+        
     console.log(`Skipped phrase: "${phrasesToTranslate[progress - 1]}"`);
 }
 
@@ -422,6 +420,58 @@ function resetEasyMode() {
     hideElement('error-message');
     hideElement('whatsapp-section');
     document.getElementById('french-input').value = '';
+    resetCorrectionBox();
+}
+
+// Toggle correction box visibility
+function toggleCorrectionBox() {
+    const correctionContainer = document.getElementById('correction-container');
+    const correctionBox = document.getElementById('correction-box');
+    const currentPhrase = document.getElementById('kirundi-phrase').textContent;
+    
+    if (correctionContainer.classList.contains('hidden')) {
+        // Show correction box
+        correctionContainer.classList.remove('hidden');
+        correctionBox.value = currentPhrase; // Pre-fill with original phrase
+        correctionBox.focus();
+        
+        // Update button text
+        const reportText = document.getElementById('report-problem-text');
+        if (currentLanguage === 'fr') {
+            reportText.textContent = 'Annuler la correction';
+        } else {
+            reportText.textContent = 'Cancel correction';
+        }
+    } else {
+        // Hide correction box
+        correctionContainer.classList.add('hidden');
+        
+        // Reset button text
+        const reportText = document.getElementById('report-problem-text');
+        if (currentLanguage === 'fr') {
+            reportText.textContent = 'Signaler un problème';
+        } else {
+            reportText.textContent = 'Report a problem';
+        }
+    }
+}
+
+// Reset correction box when moving to next phrase
+function resetCorrectionBox() {
+    const correctionContainer = document.getElementById('correction-container');
+    const correctionBox = document.getElementById('correction-box');
+    const reportText = document.getElementById('report-problem-text');
+    
+    // Hide correction box
+    correctionContainer.classList.add('hidden');
+    correctionBox.value = '';
+    
+    // Reset button text
+    if (currentLanguage === 'fr') {
+        reportText.textContent = 'Signaler un problème';
+    } else {
+        reportText.textContent = 'Report a problem';
+    }
 }
 
 // Medium Mode Functions (French to Kirundi Translation)
@@ -453,8 +503,24 @@ async function initMediumMode() {
 
     } catch (error) {
         console.error('Error initializing Medium Mode:', error);
-        alert('Error loading Medium Mode. Please try again.');
-        backToMainMenu();
+
+        // Hide loading and game UI
+        hideElement('loading-medium');
+        hideElement('medium-game-ui');
+
+        // Show Medium error UI if present
+        const mediumError = document.getElementById('medium-error');
+        if (mediumError) {
+            mediumError.classList.remove('hidden');
+        } else {
+            // Fallback: bilingual alert
+            const isFrench = (typeof currentLanguage !== 'undefined' && currentLanguage === 'fr');
+            const message = isFrench
+                ? "Erreur de chargement du mode Moyen. Nous n'avons pas pu charger les phrases françaises pour le mode Moyen. Veuillez vérifier votre connexion Internet, puis revenir au menu principal pour réessayer."
+                : "Unable to load Medium Mode. We could not load the French prompts for Medium Mode. Please check your internet connection, then return to the main menu and try again.";
+            alert(message);
+        }
+        // Do not call backToMainMenu automatically; let user choose.
     }
 }
 
@@ -613,13 +679,19 @@ function submitMediumTranslation() {
     const kirundiTranslation = document.getElementById('kirundi-translation').value.trim();
 
     if (!kirundiTranslation) {
-        showMediumError('Please enter a Kirundi translation.');
+        const errorMessage = currentLanguage === 'fr' ? 
+            'Veuillez entrer une traduction kirundi.' : 
+            'Please enter a Kirundi translation.';
+        showMediumError(errorMessage);
         return;
     }
 
     // Critical: Check for duplicates against existing database (if available)
     if (existingKirundiPhrases.size > 0 && existingKirundiPhrases.has(kirundiTranslation)) {
-        showMediumError('This Kirundi translation is already in our database! Thank you!');
+        const errorMessage = currentLanguage === 'fr' ? 
+            'Cette traduction kirundi est déjà dans notre base de données! Merci!' : 
+            'This Kirundi translation is already in our database! Thank you!';
+        showMediumError(errorMessage);
         return;
     }
 
@@ -708,10 +780,35 @@ function downloadCSV(dataArray, filename) {
 }
 
 function downloadTranslations() {
-    downloadCSV(userTranslations, 'Kirundi_To_French.csv');
+    if (userTranslations.length === 0) {
+        alert('No data to download!');
+        return;
+    }
+
+    // Create CSV content with three columns
+    let csvContent = 'Original_Kirundi,Corrected_Kirundi,French_Translation\n';
+    
+    userTranslations.forEach(item => {
+        // Escape quotes and wrap in quotes if necessary
+        const originalKirundi = `"${item.original_kirundi.replace(/"/g, '""')}"`;
+        const correctedKirundi = `"${item.corrected_kirundi.replace(/"/g, '""')}"`;
+        const frenchTranslation = `"${item.french_translation.replace(/"/g, '""')}"`;
+        csvContent += `${originalKirundi},${correctedKirundi},${frenchTranslation}\n`;
+    });
+
+    // Create and download file
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'Kirundi_To_French.csv');
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
     
     // Save submitted Kirundi phrases to localStorage to prevent re-showing them
-    const submittedKirundiPhrases = userTranslations.map(translation => translation.kirundi);
+    const submittedKirundiPhrases = userTranslations.map(translation => translation.original_kirundi);
     saveSubmittedPhrases(submittedKirundiPhrases);
     
     // Show WhatsApp share section after download
@@ -839,13 +936,19 @@ function addHardSentence() {
     
     // Validation
     if (!kirundiText || !frenchText) {
-        showHardError('Both Kirundi and French fields must be filled.');
+        const errorMessage = currentLanguage === 'fr' ? 
+            'Les champs Kirundi et Français doivent être remplis.' : 
+            'Both Kirundi and French fields must be filled.';
+        showHardError(errorMessage);
         return;
     }
     
     const wordCount = kirundiText.split(/\s+/).length;
     if (wordCount < 4) {
-        showHardError('Kirundi sentence must contain at least 4 words.');
+        const errorMessage = currentLanguage === 'fr' ? 
+            'La phrase kirundi doit contenir au moins 4 mots.' : 
+            'Kirundi sentence must contain at least 4 words.';
+        showHardError(errorMessage);
         return;
     }
     
@@ -881,8 +984,14 @@ function showHardError(message) {
 }
 
 function updateHardSentenceCounter() {
-    document.getElementById('sentence-counter').textContent = 
-        `You have added ${userHardSentences.length} sentence${userHardSentences.length !== 1 ? 's' : ''}.`;
+    const counterElement = document.getElementById('sentence-counter');
+    if (currentLanguage === 'fr') {
+        counterElement.textContent = 
+            `Vous avez ajouté ${userHardSentences.length} phrase${userHardSentences.length !== 1 ? 's' : ''}.`;
+    } else {
+        counterElement.textContent = 
+            `You have added ${userHardSentences.length} sentence${userHardSentences.length !== 1 ? 's' : ''}.`;
+    }
 }
 
 function resetHardMode() {
@@ -924,8 +1033,452 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
+// Language Toggle Function
+function toggleLanguage() {
+    try {
+        console.log('Language toggle clicked. Current language:', currentLanguage);
+        
+        currentLanguage = currentLanguage === 'en' ? 'fr' : 'en';
+        console.log('New language:', currentLanguage);
+        
+        updateLanguageUI();
+        translateInterface();
+        
+        console.log('Language toggle completed successfully');
+    } catch (error) {
+        console.error('Error in toggleLanguage:', error);
+    }
+}
+
+function updateLanguageUI() {
+    const flagElement = document.getElementById('language-flag');
+    const textElement = document.getElementById('language-text');
+    
+    if (currentLanguage === 'fr') {
+        flagElement.textContent = '🇬🇧';
+        textElement.textContent = 'EN';
+    } else {
+        flagElement.textContent = '🇫🇷';
+        textElement.textContent = 'FR';
+    }
+}
+
+function translateInterface() {
+    try {
+        // Hide any inappropriate success messages during translation
+        const successElements = ['hard-success-message', 'medium-success-message', 'success-message'];
+        successElements.forEach(id => {
+            const element = document.getElementById(id);
+            if (element) element.classList.add('hidden');
+        });
+        
+        console.log('Translation function started for language:', currentLanguage);
+    } catch (error) {
+        console.error('Error in translateInterface:', error);
+        return;
+    }
+    
+    const translations = {
+        en: {
+            // Medium Level - Live data error
+            mediumErrorTitle: 'Unable to load Medium Mode',
+            mediumErrorMessage: 'We could not load the French prompts for Medium Mode. Please check your internet connection, then return to the main menu and try again.',
+            mediumErrorCta: '← Back to main menu',
+            title: 'Ijwi ry\'Ikirundi AI',
+            subtitle: 'Contribution Hub',
+            mission: 'Help us build the future of Kirundi language AI through community collaboration',
+            preserving: 'Preserving Heritage',
+            building: 'Building Future',
+            empowering: 'Empowering Community',
+            easyLevel: 'Easy Level: Translate Kirundi To French',
+            easyDesc: 'Translate Kirundi sentences to French',
+            mediumLevel: 'Medium Level: Translate French to Kirundi',
+            mediumDesc: 'Translate French sentences to Kirundi',
+            hardLevel: 'Hard Level: Add New Sentences',
+            hardDesc: 'Create original Kirundi-French sentence pairs',
+            skipHelp: 'Don\'t know the answer?',
+            skipText: 'No problem! Click "Skip" or press',
+            skipAction: 'to move to the next',
+            // Main menu
+            chooseLevel: 'Choose Your Contribution Level',
+            selectType: 'Select the type of contribution you\'d like to make to help build our Kirundi AI dataset',
+            // Game interface
+            backToMenu: '← Back to Menu',
+            skip: '⏭️ Skip',
+            submitTranslation: 'Submit Translation →',
+            progress: 'Progress',
+            shortcuts: '💡 Shortcuts: Ctrl+Enter to submit • Escape to skip',
+            // Easy Level
+            easyTitle: 'Easy Level: Translation Game',
+            kirundiPhrase: 'Kirundi Phrase:',
+            frenchTranslation: 'Your French Translation:',
+            // Easy Level - Placeholders
+            easyPlaceholder: 'Type your French translation here...',
+            // Medium Level
+            mediumTitle: 'Medium Level: Translate French to Kirundi',
+            mediumDesc2: 'Translate French sentences to Kirundi. Your translations will be checked against our database to avoid duplicates.',
+            frenchSentence: 'French Sentence:',
+            kirundiTranslation: 'Your Kirundi Translation:',
+            // Medium Level - Placeholders
+            mediumPlaceholder: 'Type your Kirundi translation here...',
+            // Hard Level
+            hardTitle: 'Hard Level: Add New Sentences',
+            hardDesc2: 'Create new Kirundi-French sentence pairs. Make sure your Kirundi sentences are meaningful and contain at least 4 words.',
+            sentenceCounter: 'You have added 0 sentences.',
+            newKirundiSentence: 'New Kirundi Sentence:',
+            frenchTranslationLabel: 'French Translation:',
+            addSentence: 'Add Sentence',
+            downloadMySentences: 'Download My Sentences',
+            // Hard Level - Placeholders
+            kirundiPlaceholder: 'Enter a new Kirundi sentence...',
+            frenchPlaceholder: 'Enter a new French sentence...',
+            // Easy Level - Completion
+            congratulations: 'Congratulations!',
+            completedBatch: 'You\'ve completed a batch of translations!',
+            downloadCsv: 'Download Kirundi_To_French.csv',
+            // Easy Level - Messages
+            easyErrorMessage: 'Please enter a translation before continuing.',
+            fetchingLiveData: 'Fetching live data from Hugging Face...',
+            loadingUntranslated: 'Loading untranslated phrases from the official dataset',
+            // WhatsApp Sharing
+            sendCsvFile: '📱 Send CSV File',
+            whatsappInstructions: 'Click to open WhatsApp, then attach your CSV file:',
+            whatsappWarning: '⚠️ You\'ll need to manually attach the CSV file after WhatsApp opens',
+            openWhatsappChat: '💬 Open WhatsApp Chat',
+            // Medium Level - Additional
+            translationAdded: 'Translation added successfully!',
+            excellentWork: 'Excellent Work!',
+            completedFrenchBatch: 'You\'ve completed a batch of French to Kirundi translations!',
+            downloadMediumCsv: 'Download French_To_Kirundi.csv',
+            // Medium Level - Loading & Messages
+            loadingMediumData: 'Loading French prompts and checking database...',
+            preparingSession: 'Preparing your translation session',
+            mediumErrorMessage: 'Please enter a translation before continuing.',
+            // Hard Level - Messages
+            sentencePairAdded: 'Sentence pair added successfully!',
+            hardErrorMessage: 'Both Kirundi and French fields must be filled.',
+            // Footer
+            footerDescription: 'Preserving and advancing the Kirundi language through artificial intelligence and community collaboration.',
+            footerBuilt: 'Built with ❤️ for the Kirundi community',
+            poweredBy: 'Powered by Ijwi Ry\'Ikirundi AI Team',
+            // Easy Level - Live data error
+            easyErrorTitle: 'Unable to load live data',
+            easyErrorMessage: 'We could not load Kirundi sentences from the live Hugging Face dataset. Please check your internet connection, then return to the main menu and try again.',
+            easyErrorCta: '← Back to main menu',
+            // Page title
+            pageTitle: 'Ijwi ry\'Ikirundi AI: Contribution Hub',
+            // Report Problem Feature
+            reportProblem: 'Report a problem with this sentence',
+            reportHelpText: 'Click if you find errors in the Kirundi sentence',
+            cancelCorrection: 'Cancel correction',
+            correctionLabel: 'Correct the Kirundi sentence:',
+            correctionPlaceholder: 'Fix any errors in the Kirundi sentence...',
+            correctionHelp: 'Help:',
+            correctionInstructions: 'Fix any spelling, grammar, or other errors in the Kirundi sentence above.'
+        },
+        fr: {
+            // Medium Level - Live data error
+            mediumErrorTitle: 'Erreur de chargement du mode Moyen',
+            mediumErrorMessage: 'Nous n\'avons pas pu charger les phrases françaises pour le mode Moyen. Veuillez vérifier votre connexion Internet, puis revenir au menu principal pour réessayer.',
+            mediumErrorCta: '← Retour au menu principal',
+            title: 'Ijwi ry\'Ikirundi AI',
+            subtitle: 'Hub de Contribution',
+            mission: 'Aidez-nous à construire l\'avenir de l\'IA en langue kirundi grâce à la collaboration communautaire',
+            preserving: 'Préserver l\'Héritage',
+            building: 'Construire l\'Avenir',
+            empowering: 'Autonomiser la Communauté',
+            easyLevel: 'Niveau Facile: Traduire Kirundi vers Français',
+            easyDesc: 'Traduisez les phrases kirundi en français',
+            mediumLevel: 'Niveau Moyen: Traduire Français vers Kirundi',
+            mediumDesc: 'Traduisez les phrases françaises en kirundi',
+            hardLevel: 'Niveau Difficile: Ajouter de Nouvelles Phrases',
+            hardDesc: 'Créez des paires de phrases kirundi-français originales',
+            skipHelp: 'Vous ne connaissez pas la réponse?',
+            skipText: 'Pas de problème! Cliquez sur "Ignorer" ou appuyez sur',
+            skipAction: 'pour passer à la',
+            // Main menu
+            chooseLevel: 'Choisissez Votre Niveau de Contribution',
+            selectType: 'Sélectionnez le type de contribution que vous souhaitez apporter pour aider à construire notre jeu de données Kirundi IA',
+            // Game interface
+            backToMenu: '← Retour au Menu',
+            skip: '⏭️ Ignorer',
+            submitTranslation: 'Soumettre la Traduction →',
+            progress: 'Progrès',
+            shortcuts: '💡 Raccourcis: Ctrl+Entrée pour soumettre • Échap pour ignorer',
+            // Easy Level
+            easyTitle: 'Niveau Facile: Jeu de Traduction',
+            kirundiPhrase: 'Phrase Kirundi:',
+            frenchTranslation: 'Votre Traduction Française:',
+            // Easy Level - Placeholders
+            easyPlaceholder: 'Tapez votre traduction française ici...',
+            // Medium Level
+            mediumTitle: 'Niveau Moyen: Traduire Français vers Kirundi',
+            mediumDesc2: 'Traduisez les phrases françaises en kirundi. Vos traductions seront vérifiées dans notre base de données pour éviter les doublons.',
+            frenchSentence: 'Phrase Française:',
+            kirundiTranslation: 'Votre Traduction Kirundi:',
+            // Medium Level - Placeholders
+            mediumPlaceholder: 'Tapez votre traduction en kirundi ici...',
+            // Hard Level
+            hardTitle: 'Niveau Difficile: Ajouter de Nouvelles Phrases',
+            hardDesc2: 'Créez de nouvelles paires de phrases kirundi-français. Assurez-vous que vos phrases kirundi sont significatives et contiennent au moins 4 mots.',
+            sentenceCounter: 'Vous avez ajouté 0 phrases.',
+            newKirundiSentence: 'Nouvelle Phrase Kirundi:',
+            frenchTranslationLabel: 'Traduction Française:',
+            addSentence: 'Ajouter une Phrase',
+            downloadMySentences: 'Télécharger Mes Phrases',
+            // Hard Level - Placeholders
+            kirundiPlaceholder: 'Entrez une nouvelle phrase kirundi...',
+            frenchPlaceholder: 'Entrez une nouvelle phrase française...',
+            // Easy Level - Completion
+            congratulations: 'Félicitations!',
+            completedBatch: 'Vous avez terminé un lot de traductions!',
+            downloadCsv: 'Télécharger Kirundi_To_French.csv',
+            // Easy Level - Messages
+            easyErrorMessage: 'Veuillez entrer une traduction avant de continuer.',
+            fetchingLiveData: 'Récupération des données en direct depuis Hugging Face...',
+            loadingUntranslated: 'Chargement des phrases non traduites du jeu de données officiel',
+            // WhatsApp Sharing
+            sendCsvFile: '📱 Envoyer le Fichier CSV',
+            whatsappInstructions: 'Cliquez pour ouvrir WhatsApp, puis joignez votre fichier CSV:',
+            whatsappWarning: '⚠️ Vous devrez joindre manuellement le fichier CSV après l\'ouverture de WhatsApp',
+            openWhatsappChat: '💬 Ouvrir le Chat WhatsApp',
+            // Medium Level - Additional
+            translationAdded: 'Traduction ajoutée avec succès!',
+            excellentWork: 'Excellent Travail!',
+            completedFrenchBatch: 'Vous avez terminé un lot de traductions français vers kirundi!',
+            downloadMediumCsv: 'Télécharger French_To_Kirundi.csv',
+            // Medium Level - Loading & Messages
+            loadingMediumData: 'Chargement des phrases françaises et vérification de la base de données...',
+            preparingSession: 'Préparation de votre session de traduction',
+            mediumErrorMessage: 'Veuillez entrer une traduction avant de continuer.',
+            // Hard Level - Messages
+            sentencePairAdded: 'Paire de phrases ajoutée avec succès!',
+            hardErrorMessage: 'Les champs Kirundi et Français doivent être remplis.',
+            // Footer
+            footerDescription: 'Préserver et faire progresser la langue kirundi grâce à l\'intelligence artificielle et à la collaboration communautaire.',
+            footerBuilt: 'Construit avec ❤️ pour la communauté Kirundi',
+            poweredBy: 'Propulsé par l\'Équipe Ijwi Ry\'Ikirundi AI',
+            // Easy Level - Live data error
+            easyErrorTitle: 'Erreur de chargement des données',
+            easyErrorMessage: 'Nous n\'avons pas pu charger les phrases kirundi en direct depuis Hugging Face. Veuillez vérifier votre connexion Internet, puis revenir au menu principal pour réessayer.',
+            easyErrorCta: '← Retour au menu principal',
+            // Page title
+            pageTitle: 'Ijwi ry\'Ikirundi AI: Hub de Contribution',
+            // Report Problem Feature
+            reportProblem: 'Signaler un problème avec cette phrase',
+            reportHelpText: 'Cliquez si vous trouvez des erreurs dans la phrase kirundi',
+            cancelCorrection: 'Annuler la correction',
+            correctionLabel: 'Corriger la phrase kirundi:',
+            correctionPlaceholder: 'Corrigez les erreurs dans la phrase kirundi...',
+            correctionHelp: 'Aide:',
+            correctionInstructions: 'Corrigez les fautes d\'orthographe, de grammaire ou autres erreurs dans la phrase kirundi ci-dessus.'
+        }
+    };
+    
+    const t = translations[currentLanguage];
+    
+    // Update main interface elements
+    const elements = {
+        'subtitle': t.subtitle,
+        'mission-text': t.mission,
+        'preserving-text': t.preserving,
+        'building-text': t.building,
+        'empowering-text': t.empowering,
+        'footer-description': t.footerDescription,
+        'footer-built': t.footerBuilt,
+        'fetching-live-data': t.fetchingLiveData,
+        'loading-untranslated': t.loadingUntranslated,
+        'loading-medium-data': t.loadingMediumData,
+        'preparing-session': t.preparingSession,
+        'easy-error-text': t.easyErrorMessage,
+        'easy-progress-label': t.progress,
+        'medium-progress-label': t.progress,
+        'medium-success-text': t.translationAdded,
+        // Easy Level - Error UI
+        'easy-error-title': t.easyErrorTitle,
+        'easy-error-message': t.easyErrorMessage,
+        'easy-error-cta': t.easyErrorCta,
+        // Medium Level - Error UI
+        'medium-error-title': t.mediumErrorTitle,
+        'medium-error-message': t.mediumErrorMessage,
+        'medium-error-cta': t.mediumErrorCta,
+        // Report Problem Feature
+        'report-problem-text': t.reportProblem,
+        'report-help-text': t.reportHelpText,
+        'correction-label': t.correctionLabel,
+        'correction-help': t.correctionHelp,
+        'correction-instructions': t.correctionInstructions
+    };
+    
+    // Special handling for error messages that might be dynamically generated
+    const errorElements = {
+        'error-message': t.easyErrorMessage,
+        'medium-error-message': t.mediumErrorMessage,
+        'hard-error-message': t.hardErrorMessage
+    };
+    
+    // Update error messages if they exist and contain the expected text
+    Object.keys(errorElements).forEach(id => {
+        const element = document.getElementById(id);
+        if (element && errorElements[id]) {
+            // Check if element contains error text and update accordingly (bidirectional)
+            if (id === 'error-message' && (element.textContent.includes('Please enter a translation') || element.textContent.includes('Veuillez entrer une traduction'))) {
+                element.textContent = errorElements[id];
+            } else if (id === 'medium-error-message' && (element.textContent.includes('Please enter a translation') || element.textContent.includes('Veuillez entrer une traduction'))) {
+                element.textContent = errorElements[id];
+            } else if (id === 'hard-error-message' && (element.textContent.includes('Both Kirundi and French fields') || element.textContent.includes('Les champs Kirundi et Français'))) {
+                element.textContent = errorElements[id];
+            }
+        }
+    });
+    
+    // Special handling for "Powered by" element to preserve HTML formatting
+    const poweredByElement = document.getElementById('powered-by');
+    if (poweredByElement) {
+        if (currentLanguage === 'fr') {
+            poweredByElement.innerHTML = 'Propulsé par <span class="font-poppins text-green-400 font-bold text-lg">l\'Équipe Ijwi Ry\'Ikirundi AI</span>';
+        } else {
+            poweredByElement.innerHTML = 'Powered by <span class="font-poppins text-green-400 font-bold text-lg">Ijwi Ry\'Ikirundi AI Team</span>';
+        }
+    }
+    
+    // Update elements if they exist
+    Object.keys(elements).forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = elements[id];
+        }
+    });
+    
+    // Update main menu elements
+    const mainMenuElements = document.querySelectorAll('[data-translate]');
+    mainMenuElements.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (t[key]) {
+            element.textContent = t[key];
+        }
+    });
+    
+    // Update buttons and labels by text content - improved bidirectional translation
+    const buttonMappings = [
+        // Back to Menu buttons
+        { selector: 'button', containsEn: '← Back to Menu', containsFr: '← Retour au Menu', newText: t.backToMenu },
+        // Skip buttons
+        { selector: 'button', containsEn: '⏭️ Skip', containsFr: '⏭️ Ignorer', newText: t.skip },
+        // Submit buttons
+        { selector: 'button', containsEn: 'Submit Translation', containsFr: 'Soumettre la Traduction', newText: t.submitTranslation },
+        // Add sentence buttons
+        { selector: 'button', containsEn: 'Add Sentence', containsFr: 'Ajouter une Phrase', newText: t.addSentence },
+        // Download buttons
+        { selector: 'button', containsEn: 'Download My Sentences', containsFr: 'Télécharger Mes Phrases', newText: t.downloadMySentences },
+        { selector: 'button', containsEn: 'Download Kirundi_To_French.csv', containsFr: 'Télécharger Kirundi_To_French.csv', newText: t.downloadCsv },
+        { selector: 'button', containsEn: 'Download French_To_Kirundi.csv', containsFr: 'Télécharger French_To_Kirundi.csv', newText: t.downloadMediumCsv },
+        { selector: 'button', containsEn: '💬 Open WhatsApp Chat', containsFr: '💬 Ouvrir le Chat WhatsApp', newText: t.openWhatsappChat },
+        // Labels
+        { selector: 'label', containsEn: 'Kirundi Phrase:', containsFr: 'Phrase Kirundi:', newText: t.kirundiPhrase },
+        { selector: 'label', containsEn: 'Your French Translation:', containsFr: 'Votre Traduction Française:', newText: t.frenchTranslation },
+        { selector: 'label', containsEn: 'French Sentence:', containsFr: 'Phrase Française:', newText: t.frenchSentence },
+        { selector: 'label', containsEn: 'Your Kirundi Translation:', containsFr: 'Votre Traduction Kirundi:', newText: t.kirundiTranslation },
+        { selector: 'label', containsEn: 'New Kirundi Sentence:', containsFr: 'Nouvelle Phrase Kirundi:', newText: t.newKirundiSentence },
+        { selector: 'label', containsEn: 'French Translation:', containsFr: 'Traduction Française:', newText: t.frenchTranslationLabel },
+        // Headers
+        { selector: 'h2', containsEn: 'Easy Level: Translation Game', containsFr: 'Niveau Facile: Jeu de Traduction', newText: t.easyTitle },
+        { selector: 'h2', containsEn: 'Medium Level: Translate French to Kirundi', containsFr: 'Niveau Moyen: Traduire Français vers Kirundi', newText: t.mediumTitle },
+        { selector: 'h2', containsEn: 'Hard Level: Add New Sentences', containsFr: 'Niveau Difficile: Ajouter de Nouvelles Phrases', newText: t.hardTitle },
+        // Completion messages
+        { selector: 'h3', containsEn: 'Congratulations!', containsFr: 'Félicitations!', newText: t.congratulations },
+        { selector: 'h3', containsEn: 'Excellent Work!', containsFr: 'Excellent Travail!', newText: t.excellentWork },
+        { selector: 'p', containsEn: 'You\'ve completed a batch of translations!', containsFr: 'Vous avez terminé un lot de traductions!', newText: t.completedBatch },
+        { selector: 'p', containsEn: 'You\'ve completed a batch of French to Kirundi translations!', containsFr: 'Vous avez terminé un lot de traductions français vers kirundi!', newText: t.completedFrenchBatch },
+        // WhatsApp elements
+        { selector: 'h4', containsEn: '📱 Send CSV File', containsFr: '📱 Envoyer le Fichier CSV', newText: t.sendCsvFile },
+        { selector: 'p', containsEn: 'Click to open WhatsApp, then attach your CSV file:', containsFr: 'Cliquez pour ouvrir WhatsApp, puis joignez votre fichier CSV:', newText: t.whatsappInstructions },
+        { selector: 'p', containsEn: '⚠️ You\'ll need to manually attach the CSV file after WhatsApp opens', containsFr: '⚠️ Vous devrez joindre manuellement le fichier CSV après l\'ouverture de WhatsApp', newText: t.whatsappWarning },
+        // Loading messages
+        { selector: 'p', containsEn: 'Loading French prompts and checking database...', containsFr: 'Chargement des phrases françaises et vérification de la base de données...', newText: t.loadingMediumData },
+        { selector: 'p', containsEn: 'Preparing your translation session', containsFr: 'Préparation de votre session de traduction', newText: t.preparingSession }
+    ];
+    
+    buttonMappings.forEach(mapping => {
+        const elements = document.querySelectorAll(mapping.selector);
+        elements.forEach(element => {
+            // Check if element contains either English or French text
+            const containsEnglish = mapping.containsEn && element.textContent.includes(mapping.containsEn);
+            const containsFrench = mapping.containsFr && element.textContent.includes(mapping.containsFr);
+            
+            if (containsEnglish || containsFrench) {
+                element.textContent = mapping.newText;
+            }
+        });
+    });
+    
+    // Update shortcuts text
+    const shortcutsElements = document.querySelectorAll('.text-sm.text-gray-600');
+    shortcutsElements.forEach(element => {
+        if (element.textContent.includes('Shortcuts:') || element.textContent.includes('Raccourcis:')) {
+            element.innerHTML = t.shortcuts;
+        }
+    });
+    
+    // Update placeholders
+    const placeholderMappings = [
+        { id: 'french-input', placeholder: t.easyPlaceholder },
+        { id: 'kirundi-translation', placeholder: t.mediumPlaceholder },
+        { id: 'hard-new-kirundi', placeholder: t.kirundiPlaceholder },
+        { id: 'hard-new-french', placeholder: t.frenchPlaceholder },
+        { id: 'correction-box', placeholder: t.correctionPlaceholder }
+    ];
+    
+    placeholderMappings.forEach(mapping => {
+        const element = document.getElementById(mapping.id);
+        if (element && mapping.placeholder) {
+            element.placeholder = mapping.placeholder;
+        }
+    });
+    
+    // Update dynamic sentence counter for Hard Level
+    const sentenceCounterElement = document.getElementById('sentence-counter');
+    if (sentenceCounterElement && currentLanguage === 'fr') {
+        const count = sentenceCounterElement.textContent.match(/\d+/);
+        if (count) {
+            sentenceCounterElement.textContent = `Vous avez ajouté ${count[0]} phrase${count[0] !== '1' ? 's' : ''}.`;
+        }
+    } else if (sentenceCounterElement && currentLanguage === 'en') {
+        const count = sentenceCounterElement.textContent.match(/\d+/);
+        if (count) {
+            sentenceCounterElement.textContent = `You have added ${count[0]} sentence${count[0] !== '1' ? 's' : ''}.`;
+        }
+    }
+    
+    // Update button texts
+    const buttons = document.querySelectorAll('.level-button-text');
+    buttons.forEach((button, index) => {
+        if (index === 0) button.textContent = t.easyLevel;
+        if (index === 1) button.textContent = t.mediumLevel;
+        if (index === 2) button.textContent = t.hardLevel;
+    });
+    
+    // Update descriptions
+    const descriptions = document.querySelectorAll('.level-description');
+    descriptions.forEach((desc, index) => {
+        if (index === 0) desc.textContent = t.easyDesc;
+        if (index === 1) desc.textContent = t.mediumDesc;
+        if (index === 2) desc.textContent = t.hardDesc;
+    });
+    
+    // Update skip help text
+    const skipHelps = document.querySelectorAll('.skip-help-text');
+    skipHelps.forEach(help => {
+        const parts = help.innerHTML.split('<kbd');
+        if (parts.length > 1) {
+            help.innerHTML = `<span class="font-medium">💡 ${t.skipHelp}</span> ${t.skipText} <kbd${parts[1].split('</kbd>')[0]}</kbd> ${t.skipAction} ${currentLanguage === 'en' ? 'phrase.' : 'phrase suivante.'}`;
+        }
+    });
+}
+
 // Initialize app
 document.addEventListener('DOMContentLoaded', function() {
     // App is ready
     console.log('Kirundi Contribution App loaded successfully!');
+    updateLanguageUI();
 });

@@ -27,3 +27,113 @@
 2025-11-15 15:42:25,686 - INFO - Updated 1 existing translations.
 2025-11-15 15:42:25,686 - INFO - Added 1 new sentences.
 2025-11-15 15:42:25,690 - INFO - SUCCESS! Your main file '../Kirundi_Dataset/metadata.csv' has been saved.
+2025-11-16 11:46:44,587 - INFO - Loaded 586 rows and 584 unique normalized Kirundi phrases from master file.
+2025-11-16 11:46:44,588 - INFO - Processing file: Kirundi_To_French(5).csv
+2025-11-16 11:46:44,591 - INFO - UPDATED row 587: Corrected text and added translation for 'Mwaramutse, amakuru zanyu??'
+2025-11-16 11:46:44,591 - INFO - Processing file: French_To_Kirundi.csv
+2025-11-16 11:46:44,594 - INFO - ADDING new row 588: 'Nafunguye cane.'
+2025-11-16 11:46:44,594 - INFO - ADDING new row 589: 'Nazimiye.'
+2025-11-16 11:46:44,594 - INFO - ADDING new row 590: 'Sinzi.'
+2025-11-16 11:46:44,595 - INFO - ADDING new row 591: 'Natoye inyishu.'
+2025-11-16 11:46:44,595 - INFO - ADDING new row 592: 'Iyi ni iyihe ndirimbo?'
+2025-11-16 11:46:44,595 - INFO - ADDING new row 593: 'Murashobora kugabanya ijwi?'
+2025-11-16 11:46:44,596 - INFO - ADDING new row 594: 'Insiguro yari yikwije.'
+2025-11-16 11:46:44,596 - INFO - ADDING new row 595: 'Muravuga Icongereza?'
+2025-11-16 11:46:44,596 - INFO - ADDING new row 596: 'Ndiko ndirabira, murakoze.'
+2025-11-16 11:46:44,597 - INFO - ADDING new row 597: 'Umuziki urakomeye cane.'
+2025-11-16 11:46:44,597 - INFO - ADDING new row 598: 'Tugende kwishure.'
+2025-11-16 11:46:44,597 - INFO - ADDING new row 599: 'Nahuye n'Abantu bashasha.'
+2025-11-16 11:46:44,598 - INFO - Processing file: French_To_Kirundi(1).csv
+2025-11-16 11:46:44,600 - INFO - ADDING new row 600: 'Niryari tuzongera kubonana ?'
+2025-11-16 11:46:44,600 - INFO - ADDING new row 601: 'Mama wanje ariko arategura imfungurwa'
+2025-11-16 11:46:44,601 - INFO - ADDING new row 602: 'Igitabu kiri ku meza'
+2025-11-16 11:46:44,601 - INFO - ADDING new row 603: 'Jewe ndarondera imfunguruzo zanje'
+2025-11-16 11:46:44,602 - INFO - ADDING new row 604: 'Ni itariki zingahe ?'
+2025-11-16 11:46:44,602 - INFO - ADDING new row 605: 'Musazanje ni incabwenge'
+2025-11-16 11:46:44,603 - INFO - ADDING new row 606: 'Aratwara imodoka'
+2025-11-16 11:46:44,603 - INFO - ADDING new row 607: 'Nshaka kuvugana na umunyeshure'
+2025-11-16 11:46:44,604 - INFO - ADDING new row 608: 'Mushikanje ariga cane'
+2025-11-16 11:46:44,605 - INFO - ADDING new row 609: 'Inyenyeri ziraca ibibatsi mu ijoro'
+2025-11-16 11:46:44,605 - INFO - ADDING new row 610: 'Imvura iriko iragwa cane'
+2025-11-16 11:46:44,606 - INFO - ADDING new row 611: 'Inzu ni nini'
+2025-11-16 11:46:44,606 - INFO - ADDING new row 612: 'Ndiko ndasukura uburaro bwanje'
+2025-11-16 11:46:44,607 - INFO - ADDING new row 613: 'Turatera ibiti'
+2025-11-16 11:46:44,607 - INFO - ADDING new row 614: 'Amazi asa neza'
+2025-11-16 11:46:44,607 - INFO - ADDING new row 615: 'Turiko turaraba imboneshakure'
+2025-11-16 11:46:44,608 - INFO - ADDING new row 616: 'Nshaka amazi.'
+2025-11-16 11:46:44,608 - INFO - ADDING new row 617: 'Ni isaha zingahe ?'
+2025-11-16 11:46:44,608 - INFO - ADDING new row 618: 'Jewe ndashonje ubu'
+2025-11-16 11:46:44,608 - INFO - ADDING new row 619: 'Wewe arateka neza cane'
+2025-11-16 11:46:44,685 - INFO - --- Merge Complete ---
+2025-11-16 11:46:44,685 - INFO - Updated 1 existing rows (corrections/translations).
+2025-11-16 11:46:44,686 - INFO - Added 32 new sentences.
+2025-11-16 11:46:44,725 - INFO - SUCCESS! Your main file '../Kirundi_Dataset/metadata.csv' has been saved.
+2025-11-16 11:58:33,112 - INFO - Loaded 618 rows and 616 unique normalized Kirundi phrases from master file.
+2025-11-16 11:58:33,113 - INFO - Processing file: Kirundi_To_French.csv
+2025-11-16 11:58:33,114 - WARNING - SKIPPING: Original text 'Ubu ni saa zingahe?' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,115 - WARNING - SKIPPING: Original text 'Ndashaka kuvuga n'umunyeshuri.' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,115 - WARNING - SKIPPING: Original text 'Ndagukunda cyane.' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,116 - WARNING - SKIPPING: Original text 'Ubu ni ukwezi gute?' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,116 - WARNING - SKIPPING: Original text 'Ndagiye ku kazi.' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,117 - WARNING - SKIPPING: Original text 'Tugende ku isoko.' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,117 - WARNING - SKIPPING: Original text 'Ndashaka gusinzira.' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,118 - WARNING - SKIPPING: Original text 'Uyu munsi ni mwiza.' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,118 - WARNING - SKIPPING: Original text 'Ndagiye mu bitaro.' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,119 - WARNING - SKIPPING: Original text 'Muraho, amakuru?' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,119 - WARNING - SKIPPING: Original text 'Tugende mu ishuri.' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,120 - WARNING - SKIPPING: Original text 'Ni iyihe tariki?' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,120 - WARNING - SKIPPING: Original text 'Ni ukwezi kwa kane.' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,121 - WARNING - SKIPPING: Original text 'Ndashaka amazi.' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,122 - WARNING - SKIPPING: Original text 'Ni ryari tuzongera kubonana?' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,122 - WARNING - SKIPPING: Original text 'Uyu mwaka ni mwiza.' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,123 - WARNING - SKIPPING: Original text 'Ndashaka kwiga Igifaransa.' from Kirundi_To_French.csv no longer exists in master or is already translated.
+2025-11-16 11:58:33,124 - INFO - --- Merge Complete ---
+2025-11-16 11:58:33,124 - INFO - Updated 0 existing rows (corrections/translations).
+2025-11-16 11:58:33,124 - INFO - Added 0 new sentences.
+2025-11-16 11:58:33,128 - INFO - SUCCESS! Your main file '../Kirundi_Dataset/metadata.csv' has been saved.
+2025-11-16 12:05:51,387 - INFO - Loaded 618 rows and 616 unique normalized Kirundi phrases from master file.
+2025-11-16 12:05:51,387 - INFO - Processing file: Kirundi_To_French.csv
+2025-11-16 12:05:51,389 - WARNING - SKIPPING: Original text 'Ubu ni saa zingahe?' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,390 - WARNING - SKIPPING: Original text 'Ndashaka kuvuga n'umunyeshuri.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,390 - WARNING - SKIPPING: Original text 'Ndagukunda cyane.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,391 - WARNING - SKIPPING: Original text 'Ubu ni ukwezi gute?' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,391 - WARNING - SKIPPING: Original text 'Ndagiye ku kazi.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,391 - WARNING - SKIPPING: Original text 'Tugende ku isoko.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,392 - WARNING - SKIPPING: Original text 'Ndashaka gusinzira.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,392 - WARNING - SKIPPING: Original text 'Uyu munsi ni mwiza.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,393 - WARNING - SKIPPING: Original text 'Ndagiye mu bitaro.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,393 - WARNING - SKIPPING: Original text 'Muraho, amakuru?' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,394 - WARNING - SKIPPING: Original text 'Tugende mu ishuri.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,394 - WARNING - SKIPPING: Original text 'Ni iyihe tariki?' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,395 - WARNING - SKIPPING: Original text 'Ni ukwezi kwa kane.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,396 - WARNING - SKIPPING: Original text 'Ndashaka amazi.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,396 - WARNING - SKIPPING: Original text 'Ni ryari tuzongera kubonana?' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,397 - WARNING - SKIPPING: Original text 'Uyu mwaka ni mwiza.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,398 - WARNING - SKIPPING: Original text 'Ndashaka kwiga Igifaransa.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:05:51,400 - INFO - --- Merge Complete ---
+2025-11-16 12:05:51,400 - INFO - Updated 0 existing rows (corrections/translations).
+2025-11-16 12:05:51,400 - INFO - Added 0 new sentences.
+2025-11-16 12:05:51,405 - INFO - SUCCESS! Your main file '../Kirundi_Dataset/metadata.csv' has been saved.
+2025-11-16 12:07:21,885 - INFO - Loaded 618 rows and 616 unique normalized Kirundi phrases from master file.
+2025-11-16 12:07:21,886 - INFO - Processing file: Kirundi_To_French.csv
+2025-11-16 12:07:21,887 - WARNING - SKIPPING: Original text 'Ubu ni saa zingahe?' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,888 - WARNING - SKIPPING: Original text 'Ndashaka kuvuga n'umunyeshuri.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,888 - WARNING - SKIPPING: Original text 'Ndagukunda cyane.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,889 - WARNING - SKIPPING: Original text 'Ubu ni ukwezi gute?' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,889 - WARNING - SKIPPING: Original text 'Ndagiye ku kazi.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,890 - WARNING - SKIPPING: Original text 'Tugende ku isoko.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,890 - WARNING - SKIPPING: Original text 'Ndashaka gusinzira.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,891 - WARNING - SKIPPING: Original text 'Uyu munsi ni mwiza.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,891 - WARNING - SKIPPING: Original text 'Ndagiye mu bitaro.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,892 - WARNING - SKIPPING: Original text 'Muraho, amakuru?' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,892 - WARNING - SKIPPING: Original text 'Tugende mu ishuri.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,893 - WARNING - SKIPPING: Original text 'Ni iyihe tariki?' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,894 - WARNING - SKIPPING: Original text 'Ni ukwezi kwa kane.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,894 - WARNING - SKIPPING: Original text 'Ndashaka amazi.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,895 - WARNING - SKIPPING: Original text 'Ni ryari tuzongera kubonana?' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,895 - WARNING - SKIPPING: Original text 'Uyu mwaka ni mwiza.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,896 - WARNING - SKIPPING: Original text 'Ndashaka kwiga Igifaransa.' from Kirundi_To_French.csv no longer exists in master file.
+2025-11-16 12:07:21,897 - INFO - --- Merge Complete ---
+2025-11-16 12:07:21,897 - INFO - Updated 0 existing rows (corrections/translations).
+2025-11-16 12:07:21,897 - INFO - Added 0 new sentences.
+2025-11-16 12:07:21,902 - INFO - SUCCESS! Your main file '../Kirundi_Dataset/metadata.csv' has been saved.
