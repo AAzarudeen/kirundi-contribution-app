@@ -90,6 +90,10 @@ function saveSubmittedFrenchPhrases(newFrenchPhrases) {
   }
 }
 
+function getSubmittedPhrasesCount() {
+  return getSubmittedPhrases().length;
+}
+
 // Utility function to show/hide elements
 function showElement(id) {
   document.getElementById(id).classList.remove("hidden");
