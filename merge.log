@@ -137,3 +137,26 @@
 2025-11-16 12:07:21,897 - INFO - Updated 0 existing rows (corrections/translations).
 2025-11-16 12:07:21,897 - INFO - Added 0 new sentences.
 2025-11-16 12:07:21,902 - INFO - SUCCESS! Your main file '../Kirundi_Dataset/metadata.csv' has been saved.
+2025-11-16 15:35:59,845 - INFO - Loaded 618 rows and 616 unique normalized Kirundi phrases from master file.
+2025-11-16 15:35:59,846 - INFO - Processing file: French_To_Kirundi.csv
+2025-11-16 15:35:59,869 - INFO - ADDING new row 620: 'niyumva neza mwiki gitondo.'
+2025-11-16 15:35:59,870 - INFO - ADDING new row 621: 'umugambi waheze.'
+2025-11-16 15:35:59,870 - INFO - ADDING new row 622: 'ntaco bitwaye.'
+2025-11-16 15:35:59,871 - INFO - ADDING new row 623: 'muri abagwaneza.'
+2025-11-16 15:35:59,872 - INFO - ADDING new row 624: 'Ivuriro riri kure yo ngaha.'
+2025-11-16 15:35:59,873 - INFO - ADDING new row 625: 'ndakunda akazi kanje.'
+2025-11-16 15:35:59,874 - INFO - ADDING new row 626: 'ndiko ndanywa icayi gishushe.'
+2025-11-16 15:35:59,876 - INFO - ADDING new row 627: 'papa wanje ni umurimyi.'
+2025-11-16 15:35:59,877 - INFO - ADDING new row 628: 'umwana ariko ararira.'
+2025-11-16 15:35:59,877 - INFO - ADDING new row 629: 'nkeneye ifu na isukari.'
+2025-11-16 15:35:59,878 - INFO - ADDING new row 630: 'ndiko ndafata ivyo mugitondo.'
+2025-11-16 15:35:59,879 - INFO - ADDING new row 631: 'abana barakina hanze.'
+2025-11-16 15:35:59,880 - INFO - ADDING new row 632: 'ngiye kukazi.'
+2025-11-16 15:35:59,880 - INFO - ADDING new row 633: 'uyu muhingamo ni mwiza.'
+2025-11-16 15:35:59,881 - INFO - ADDING new row 634: 'ngiye ku kibanza ca Ikarashishi.'
+2025-11-16 15:35:59,882 - INFO - ADDING new row 635: 'Ijoro ryiza.'
+2025-11-16 15:35:59,883 - INFO - ADDING new row 636: 'mwaramutse, mumeze gute?'
+2025-11-16 15:35:59,944 - INFO - --- Merge Complete ---
+2025-11-16 15:35:59,944 - INFO - Updated 0 existing rows (corrections/translations).
+2025-11-16 15:35:59,944 - INFO - Added 17 new sentences.
+2025-11-16 15:36:00,003 - INFO - SUCCESS! Your main file '../Kirundi_Dataset/metadata.csv' has been saved.

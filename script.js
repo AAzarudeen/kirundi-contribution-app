@@ -747,6 +747,168 @@ function resetMediumMode() {
     document.getElementById('kirundi-translation').value = '';
 }
 
+// --- API Submission Functions ---
+
+function showSuccessOverlay(message) {
+    document.getElementById('success-title').textContent = currentLanguage === 'fr'
+        ? 'Merci🙏🏾 pour votre contribution!'
+        : 'Thank you🙏🏾 for your contribution!';
+    document.getElementById('success-message').textContent = message || (currentLanguage === 'fr'
+        ? 'Vos données ont été soumises avec succès. Murakoze cane🙏🏾!'
+        : 'Your data has been submitted successfully. Murakoze cane🙏🏾!');
+    document.getElementById('success-main-menu-btn').textContent = currentLanguage === 'fr'
+        ? 'Retour au Menu Principal'
+        : 'Back to Main Menu';
+    document.getElementById('success-overlay').classList.remove('hidden');
+}
+
+function closeSuccessOverlay() {
+    document.getElementById('success-overlay').classList.add('hidden');
+    backToMainMenu();
+}
+
+
+async function submitEasyTranslations() {
+    const submitButton = document.getElementById('submit-easy-button');
+    if (submitButton) submitButton.disabled = true;
+    submitButton.textContent = currentLanguage === 'fr' ? 'Soumission... veuillez patienter...' : 'Submitting... please wait...';
+
+    const payload = {
+        mode: "easy",
+        data: userTranslations
+    };
+
+    try {
+        await fetch("https://script.google.com/macros/s/AKfycbznLwjbFfbf0UXxino2uA_i34YU629FgkY7CBsvgY9agJJbgzA3-8kbnEpTk52d9a-V/exec", {
+            method: "POST",
+            mode: 'no-cors', // This is correct
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload)
+        });
+        
+        // --- THIS IS THE FIX ---
+        // We no longer wait for a response. We ASSUME success.
+        
+        // Save to localStorage
+        const submittedKirundiPhrases = userTranslations.map(translation => translation.original_kirundi);
+        saveSubmittedPhrases(submittedKirundiPhrases);
+        // Show success overlay
+        showSuccessOverlay(currentLanguage === 'fr' ? 'Vos traductions ont été soumises. Murakoze cane🙏🏾!' : 'Your translations have been submitted. Murakoze cane🙏🏾!');
+        // --- END OF FIX ---
+        
+    } catch (e) {
+        // This will now ONLY catch a total network failure
+        console.error("Submission failed:", e);
+        alert(currentLanguage === 'fr' ? 'Échec de la soumission! Veuillez réessayer.' : 'Submission failed! Please try again.');
+        submitButton.textContent = currentLanguage === 'fr' ? 'Soumettre les traductions' : 'Submit Translations';
+        submitButton.disabled = false;
+    }
+}
+
+async function submitMediumTranslations() {
+    const submitButton = document.getElementById('submit-medium-button');
+    if (submitButton) submitButton.disabled = true;
+    submitButton.textContent = currentLanguage === 'fr' ? 'Soumission... veuillez patienter...' : 'Submitting... please wait...';
+
+    const payload = {
+        mode: "medium",
+        data: userMediumTranslations
+    };
+    try {
+        await fetch("https://script.google.com/macros/s/AKfycbznLwjbFfbf0UXxino2uA_i34YU629FgkY7CBsvgY9agJJbgzA3-8kbnEpTk52d9a-V/exec", {
+            method: "POST",
+            mode: 'no-cors', // This is correct
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload)
+        });
+
+        // --- THIS IS THE FIX ---
+        // We no longer wait for a response. We ASSUME success.
+        
+        // Save to localStorage
+        const submittedFrenchPhrases = userMediumTranslations.map(translation => translation.french);
+        saveSubmittedFrenchPhrases(submittedFrenchPhrases);
+        // Show success overlay
+        showSuccessOverlay(currentLanguage === 'fr' ? 'Vos nouvelles phrases ont été soumises. Murakoze cane🙏🏾!' : 'Your new sentences have been submitted. Murakoze cane🙏🏾!');
+        // --- END OF FIX ---
+        
+    } catch (e) {
+        // This will now ONLY catch a total network failure
+        console.error("Submission failed:", e);
+        alert(currentLanguage === 'fr' ? 'Échec de la soumission! Veuillez réessayer.' : 'Submission failed! Please try again.');
+        submitButton.textContent = currentLanguage === 'fr' ? 'Soumettre les traductions' : 'Submit Translations';
+        submitButton.disabled = false;
+    }
+}
+
+// Hard Level Submission - Test with minimal data
+async function submitHardSentences() {
+    const submitButton = document.getElementById('submit-hard-button');
+    if (submitButton) submitButton.disabled = true;
+    submitButton.textContent = currentLanguage === 'fr' ? 'Soumission... veuillez patienter...' : 'Submitting... please wait...';
+
+    // Test with minimal data
+    const testData = [{
+        kirundi: "test kirundi",
+        french: "test french"
+    }];
+
+    const payload = {
+        mode: "medium",
+        data: testData
+    };
+
+    console.log('Sending test payload:', JSON.stringify(payload, null, 2));
+
+    try {
+        const response = await fetch("https://script.google.com/macros/s/AKfycbznLwjbFfbf0UXxino2uA_i34YU629FgkY7CBvgY9agJJbgzA3-8kbnEpTk52d9a-V/exec", {
+            method: "POST",
+            mode: 'no-cors',
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload)
+        });
+
+        console.log('Test request sent (cannot verify response due to CORS)');
+        
+        // For now, still save the actual user data to localStorage
+        const formattedData = userHardSentences.map(sentence => ({
+            kirundi: sentence.kirundi,
+            french: sentence.french
+        }));
+        
+        const submittedFrenchPhrases = formattedData.map(translation => translation.french);
+        saveSubmittedFrenchPhrases(submittedFrenchPhrases);
+        
+        const message = currentLanguage === 'fr' 
+            ? 'Données enregistrées localement. Vérifiez votre feuille Google pour la soumission.' 
+            : 'Data saved locally. Please check your Google Sheet for submission.';
+        showSuccessOverlay(message);
+        
+        resetHardMode();
+        
+    } catch (e) {
+        console.error("Submission failed:", e);
+        // Save to localStorage even if the request fails
+        const formattedData = userHardSentences.map(sentence => ({
+            kirundi: sentence.kirundi,
+            french: sentence.french
+        }));
+        const submittedFrenchPhrases = formattedData.map(translation => translation.french);
+        saveSubmittedFrenchPhrases(submittedFrenchPhrases);
+        
+        const message = currentLanguage === 'fr' 
+            ? 'Données enregistrées localement. Erreur de soumission au serveur.' 
+            : 'Data saved locally. Server submission error.';
+        showSuccessOverlay(message);
+        resetHardMode();
+    } finally {
+        if (submitButton) {
+            submitButton.textContent = currentLanguage === 'fr' ? 'Soumettre les phrases' : 'Submit Sentences';
+            submitButton.disabled = false;
+        }
+    }
+}
+
 // Download Functions
 function downloadCSV(dataArray, filename) {
     if (dataArray.length === 0) {
@@ -810,11 +972,7 @@ function downloadTranslations() {
     // Save submitted Kirundi phrases to localStorage to prevent re-showing them
     const submittedKirundiPhrases = userTranslations.map(translation => translation.original_kirundi);
     saveSubmittedPhrases(submittedKirundiPhrases);
-    
-    // Show WhatsApp share section after download
-    setTimeout(() => {
-        showElement('whatsapp-section');
-    }, 1000); // Small delay to let download complete
+
 }
 
 function downloadMediumTranslations() {
@@ -852,76 +1010,13 @@ function downloadMediumTranslations() {
     saveSubmittedFrenchPhrases(submittedFrenchPhrases);
     
     // Show WhatsApp share section after download
-    setTimeout(() => {
-        showElement('whatsapp-section-medium');
-    }, 1000); // Small delay to let download complete
 }
 
 function downloadHardSentences() {
     downloadCSV(userHardSentences, 'my_new_sentences.csv');
-    
-    // Show WhatsApp share section after download
-    setTimeout(() => {
-        showElement('whatsapp-section-hard');
-    }, 1000); // Small delay to let download complete
+
 }
 
-function shareToWhatsApp() {
-    const phoneNumber = '25777568903'; // WhatsApp number without + sign
-    const translationCount = userTranslations.length;
-    
-    // Create a simple short message
-    const message = `Hi! I completed ${translationCount} Kirundi translations. Sending CSV file now 📎`;
-
-    // Encode the message for URL
-    const encodedMessage = encodeURIComponent(message);
-    
-    // Create WhatsApp URL
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    
-    // Open WhatsApp in a new tab/window
-    window.open(whatsappUrl, '_blank');
-    
-    console.log(`Opening WhatsApp to send ${translationCount} translations to +${phoneNumber}`);
-}
-
-function shareMediumToWhatsApp() {
-    const phoneNumber = '25777568903'; // WhatsApp number without + sign
-    const translationCount = userMediumTranslations.length;
-    
-    // Create a simple short message for French to Kirundi translations
-    const message = `Hi! I completed ${translationCount} French to Kirundi translations. Sending CSV file now 📎`;
-
-    // Encode the message for URL
-    const encodedMessage = encodeURIComponent(message);
-    
-    // Create WhatsApp URL
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    
-    // Open WhatsApp in a new tab/window
-    window.open(whatsappUrl, '_blank');
-    
-    console.log(`Opening WhatsApp to send ${translationCount} French to Kirundi translations to +${phoneNumber}`);
-}
-
-function shareHardSentencesToWhatsApp() {
-    const phoneNumber = '25777568903'; // WhatsApp number without + sign
-    const sentenceCount = userHardSentences.length;
-    
-    // Create a simple short message for new sentences
-    const message = `Hi! I created ${sentenceCount} new Kirundi sentences. Sending CSV file now 📎`;
-
-    // Encode the message for URL
-    const encodedMessage = encodeURIComponent(message);
-    
-    // Create WhatsApp URL
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    
-    // Open WhatsApp in a new tab/window
-    window.open(whatsappUrl, '_blank');
-    
-    console.log(`Opening WhatsApp to send ${sentenceCount} new sentences to +${phoneNumber}`);
-}
 
 // Hard Mode Functions (Add New Sentences)
 function initHardMode() {
@@ -964,8 +1059,7 @@ function addHardSentence() {
     
     // Update UI
     updateHardSentenceCounter();
-    document.getElementById('download-hard-sentences').disabled = false;
-    
+        
     // Show success message
     showElement('hard-success-message');
     setTimeout(() => hideElement('hard-success-message'), 3000);
@@ -998,12 +1092,10 @@ function resetHardMode() {
     userHardSentences = [];
     document.getElementById('hard-new-kirundi').value = '';
     document.getElementById('hard-new-french').value = '';
-    document.getElementById('download-hard-sentences').disabled = true;
-    updateHardSentenceCounter();
+        updateHardSentenceCounter();
     hideElement('hard-error-message');
     hideElement('hard-success-message');
-    hideElement('whatsapp-section-hard');
-}
+    }
 
 // Keyboard shortcuts
 document.addEventListener('keydown', function(event) {
