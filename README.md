@@ -15,8 +15,6 @@
 
 The **Ijwi ry'Ikirundi AI Contribution Hub** helps crowdsource Kirundi language data for AI model training. Community members can contribute translations and sentence pairs to preserve and advance the Kirundi language.
 
-## ✨ Features
-
 ### 🎯 Easy Level: Kirundi to French Translation
 
 - Translate existing Kirundi phrases to French
@@ -43,7 +41,6 @@ The **Ijwi ry'Ikirundi AI Contribution Hub** helps crowdsource Kirundi language 
 **All levels include:**
 
 - Keyboard shortcuts (Ctrl+Enter to submit, Escape to skip)
-- WhatsApp sharing integration (+257 77 568 903)
 - Mobile-responsive design
 - Language toggle button (FR/EN) for all instructions and feedback
 
