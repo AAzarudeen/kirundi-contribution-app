@@ -6,7 +6,7 @@
 
 **A web application for collecting Kirundi language contributions to help build AI language models**
 
-[![Hugging Face](https://img.shields.io/badge/🤗-Hugging%20Face-yellow)](https://huggingface.co/datasets/samandari/Kirundi_Open_Speech_Dataset)
+[![Hugging Face](https://img.shields.io/badge/🤗-Hugging%20Face-yellow)](https://huggingface.co/datasets/Ijwi-ry-Ikirundi-AI/Kirundi_Open_Speech_Dataset)
 [![Kirundi](https://img.shields.io/badge/Language-Kirundi-green)](https://en.wikipedia.org/wiki/Kirundi)
 
 </div>

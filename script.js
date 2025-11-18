@@ -224,7 +224,7 @@ async function initEasyMode() {
 async function loadTranslationData() {
   try {
     const huggingFaceUrl =
-      "https://huggingface.co/datasets/samandari/Kirundi_Open_Speech_Dataset/raw/main/metadata.csv";
+      "https://huggingface.co/datasets/Ijwi-ry-Ikirundi-AI/Kirundi_Open_Speech_Dataset/raw/main/metadata.csv";
     console.log("Fetching live data from Hugging Face...");
     const response = await fetch(huggingFaceUrl);
     if (!response.ok) {
@@ -520,7 +520,7 @@ async function loadMediumData() {
     // Load remote Kirundi data for duplicate checking
     try {
       const metadataResponse = await fetch(
-        "https://huggingface.co/datasets/samandari/Kirundi_Open_Speech_Dataset/raw/main/metadata.csv"
+        "https://huggingface.co/datasets/Ijwi-ry-Ikirundi-AI/Kirundi_Open_Speech_Dataset/raw/main/metadata.csv"
       );
       if (metadataResponse.ok) {
         const csvText = await metadataResponse.text();
@@ -807,7 +807,7 @@ async function initHardMode() {
   try {
     // Fetch live data from Hugging Face dataset
     const huggingFaceUrl =
-      "https://huggingface.co/datasets/samandari/Kirundi_Open_Speech_Dataset/raw/main/metadata.csv";
+      "https://huggingface.co/datasets/Ijwi-ry-Ikirundi-AI/Kirundi_Open_Speech_Dataset/raw/main/metadata.csv";
     console.log("Hard Mode: Fetching live data for duplicate check...");
 
     const response = await fetch(huggingFaceUrl);
