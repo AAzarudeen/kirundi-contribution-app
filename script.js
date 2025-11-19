@@ -238,7 +238,8 @@ async function loadTranslationData() {
     const submittedPhrases = getSubmittedPhrases();
     const originalCount = phrasesToTranslate.length;
     phrasesToTranslate = phrasesToTranslate.filter(
-      (phrase) => !submittedPhrases.includes(phrase)
+      // The filter now checks the .kirundi string inside the object against the submitted list.
+      (phraseObj) => !submittedPhrases.includes(phraseObj.kirundi)
     );
     console.log(
       `Found ${originalCount} untranslated phrases, ${
@@ -249,6 +250,8 @@ async function loadTranslationData() {
       `${phrasesToTranslate.length} new phrases available for translation`
     );
     shuffleArray(phrasesToTranslate);
+    // Sort by Kirundi phrase length (shortest first)
+    phrasesToTranslate.sort((a, b) => a.kirundi.length - b.kirundi.length);
     if (phrasesToTranslate.length === 0) {
       throw new Error(
         "No new untranslated phrases found - you have already submitted all available phrases!"
@@ -275,6 +278,9 @@ function parseUntranslatedRows(csvText) {
       h.trim().toLowerCase().includes("french") &&
       h.trim().toLowerCase().includes("translation")
   );
+  const suggestionIndex = headers.findIndex((h) =>
+    h.trim().toLowerCase().includes("machine_suggestion")
+  );
   if (kirundiIndex === -1) {
     console.error("Could not find kirundi_transcription column");
     return [];
@@ -288,15 +294,21 @@ function parseUntranslatedRows(csvText) {
     const line = lines[i].trim();
     if (!line) continue;
     const columns = parseCSVLine(line);
-    if (columns.length <= Math.max(kirundiIndex, frenchIndex)) continue;
+    if (columns.length <= Math.max(kirundiIndex, frenchIndex, suggestionIndex))
+      continue;
     const kirundiText = columns[kirundiIndex]?.trim();
     const frenchText = columns[frenchIndex]?.trim();
+    const suggestionText =
+      suggestionIndex !== -1 ? columns[suggestionIndex]?.trim() || "" : "";
     if (
       kirundiText &&
       kirundiText.length > 0 &&
       (!frenchText || frenchText.length === 0)
     ) {
-      untranslatedPhrases.push(kirundiText);
+      untranslatedPhrases.push({
+        kirundi: kirundiText,
+        suggestion: suggestionText,
+      });
     }
   }
   return untranslatedPhrases;
@@ -334,15 +346,29 @@ function shuffleArray(array) {
 }
 
 function showNextEasyPhrase() {
+  const aiSuggestionMsg = document.getElementById("ai-suggestion-msg");
+  const aiSuggestionMsgText = document.getElementById("ai-suggestion-msg-text");
+
   if (progress >= Math.min(batchSize, phrasesToTranslate.length)) {
     showCompletion();
     return;
   }
   updateProgress();
-  document.getElementById("kirundi-phrase").textContent =
-    phrasesToTranslate[progress];
-  document.getElementById("french-input").value = "";
-  document.getElementById("french-input").focus();
+  const phraseObj = phrasesToTranslate[progress];
+  document.getElementById("kirundi-phrase").textContent = phraseObj.kirundi;
+  if (phraseObj.suggestion && phraseObj.suggestion.length > 0) {
+    document.getElementById("french-input").value = phraseObj.suggestion;
+    if (aiSuggestionMsg && aiSuggestionMsgText) {
+      aiSuggestionMsgText.textContent =
+        currentLanguage === "fr"
+          ? "Suggestion IA : Vous pouvez corriger ou valider cette traduction générée automatiquement."
+          : "AI suggestion: You can edit or save this automatically generated translation if it's correct.";
+      aiSuggestionMsg.classList.remove("hidden");
+    }
+  } else {
+    document.getElementById("french-input").value = "";
+    if (aiSuggestionMsg) aiSuggestionMsg.classList.add("hidden");
+  }
   hideElement("error-message");
   resetCorrectionBox();
 }
@@ -357,20 +383,53 @@ function updateProgress() {
   ).textContent = `${progress} / ${availablePhrases}`;
 }
 
+// function nextEasyPhrase() {
+//   const frenchInput = document.getElementById("french-input").value.trim();
+//   if (!frenchInput) {
+//     showElement("error-message");
+//     return;
+//   }
+//   const originalKirundi = phrasesToTranslate[progress];
+//   const correctionBox = document.getElementById("correction-box");
+//   const correctedKirundi = correctionBox.value.trim() || originalKirundi;
+//   userTranslations.push({
+//     original_kirundi: originalKirundi,
+//     corrected_kirundi: correctedKirundi,
+//     french_translation: frenchInput,
+//   });
+//   progress++;
+//   showNextEasyPhrase();
+// }
+
 function nextEasyPhrase() {
   const frenchInput = document.getElementById("french-input").value.trim();
+
   if (!frenchInput) {
     showElement("error-message");
     return;
   }
-  const originalKirundi = phrasesToTranslate[progress];
+
+  // 1. Get the current phrase OBJECT (it looks like {kirundi: 'text', suggestion: 'text'})
+  const currentPhraseObj = phrasesToTranslate[progress];
+
+  // --- FIX STARTS HERE ---
+  // 2. Extract the actual Kirundi TEXT string from the object
+  const originalKirundiText = currentPhraseObj.kirundi;
+
+  // 3. Get the correction (or use the original text if no correction was made)
   const correctionBox = document.getElementById("correction-box");
-  const correctedKirundi = correctionBox.value.trim() || originalKirundi;
+  const correctedKirundiText =
+    correctionBox.value.trim() || originalKirundiText;
+
+  // 4. Add the CLEAN strings to the array
   userTranslations.push({
-    original_kirundi: originalKirundi,
-    corrected_kirundi: correctedKirundi,
+    // Now it's sending only the text string: "Ewe Bayaga urabazagiza"
+    original_kirundi: originalKirundiText,
+    corrected_kirundi: correctedKirundiText,
     french_translation: frenchInput,
   });
+  // --- FIX ENDS HERE ---
+
   progress++;
   showNextEasyPhrase();
 }
@@ -1292,6 +1351,8 @@ function translateInterface() {
       easyTitle: "Easy Level: Translation Game",
       kirundiPhrase: "Kirundi Phrase:",
       frenchTranslation: "Your French Translation:",
+      aiSuggestionText:
+        "AI suggestion: You can edit or save this translation if it's correct.",
       // Easy Level - Placeholders
       easyPlaceholder: "Type your French translation here...",
       // Medium Level
@@ -1408,6 +1469,8 @@ function translateInterface() {
       easyTitle: "Niveau Facile: Jeu de Traduction",
       kirundiPhrase: "Phrase Kirundi:",
       frenchTranslation: "Votre Traduction Française:",
+      aiSuggestionText:
+        "Suggestion IA : Vous pouvez corriger ou valider cette traduction générée automatiquement.",
       // Easy Level - Placeholders
       easyPlaceholder: "Tapez votre traduction française ici...",
       // Medium Level
@@ -1509,6 +1572,7 @@ function translateInterface() {
     "easy-error-title": t.easyErrorTitle,
     "easy-error-message": t.easyErrorMessage,
     "easy-error-cta": t.easyErrorCta,
+    "ai-suggestion-msg-text": t.aiSuggestion,
     // Medium Level - Error UI
     "medium-error-title": t.mediumErrorTitle,
     "medium-error-message": t.mediumErrorMessage,

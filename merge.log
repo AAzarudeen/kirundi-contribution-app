@@ -160,3 +160,343 @@
 2025-11-16 15:35:59,944 - INFO - Updated 0 existing rows (corrections/translations).
 2025-11-16 15:35:59,944 - INFO - Added 17 new sentences.
 2025-11-16 15:36:00,003 - INFO - SUCCESS! Your main file '../Kirundi_Dataset/metadata.csv' has been saved.
+2025-11-19 15:50:06,818 - INFO - Loaded 1226 rows and 1224 unique normalized Kirundi phrases from master file.
+2025-11-19 15:50:06,819 - INFO - Processing file: Kirundi_To_French (2).csv
+2025-11-19 15:50:06,840 - INFO - UPDATED row 619:
+2025-11-19 15:50:06,840 - INFO -   -> Text:        'Amashure yisumbuye' (unchanged)
+2025-11-19 15:50:06,840 - INFO -   -> Added French:  'Écoles secondaires'
+2025-11-19 15:50:06,842 - INFO - UPDATED row 822:
+2025-11-19 15:50:06,843 - INFO -   -> Text:        'wohora uraraba: Iyo atajanye n’abavyeyi mu mirima, asigara ararondera impembo.' (unchanged)
+2025-11-19 15:50:06,843 - INFO -   -> Added French:  'C'est beau à voir: quand il ne va pas aux champs avec ses parents,il reste en cherchant de quoi se nourrir.'
+2025-11-19 15:50:06,848 - INFO - UPDATED row 925:
+2025-11-19 15:50:06,848 - INFO -   -> Text:        'Ndabihejeje, aca antuma gusoroma ibijumbu. Mpitana isuka n’igitemere, mfata akayira.' (unchanged)
+2025-11-19 15:50:06,849 - INFO -   -> Added French:  'Après avoir terminé, il m'a envoyé récolter les patates douces. J'ai pris la houe et le panier, pris le chemin.'
+2025-11-19 15:50:06,851 - INFO - UPDATED row 1103:
+2025-11-19 15:50:06,851 - INFO -   -> Text:        'Ese Gisanumwavu ngo aratwenze! Amenyo umengo ni yo atonoza ibitoke. Aguhumekeyeko, wota ukiruka.' (unchanged)
+2025-11-19 15:50:06,852 - INFO -   -> Added French:  'Eeh quand Gisanumwavu souris! On dirait que ses dents épluchent les bananes. Et tu pourrais t'enfuir quand tu sens son haleine'
+2025-11-19 15:50:06,854 - INFO - UPDATED row 973:
+2025-11-19 15:50:06,854 - INFO -   -> Text:        'Inankuki: Ewe ntuze ako gahuzu wambaye ni keza.Ukavanye mw’iduka ubu nyene ?' (unchanged)
+2025-11-19 15:50:06,855 - INFO -   -> Added French:  'Inankuki:Que c'est jolie l'habit que tu portes. le sort-tu tout de suite de magasin ?'
+2025-11-19 15:50:06,856 - INFO - UPDATED row 757:
+2025-11-19 15:50:06,857 - INFO -   -> Text:        'Uburundi cari igihugu cifashe kandi cagutse' (unchanged)
+2025-11-19 15:50:06,857 - INFO -   -> Added French:  'Le Burundi était un pays développé et plus vaste'
+2025-11-19 15:50:06,860 - INFO - UPDATED row 946:
+2025-11-19 15:50:06,861 - INFO -   -> Text:        'Nyogokuru ati: «Kibondo, uzoba ukoze, mugabo ntuzoze batakurekuye.»' (unchanged)
+2025-11-19 15:50:06,861 - INFO -   -> Added French:  'L'arrière grand-mère dit :"Mon enfant je te remercierai mais ne vient pas sans leur accord. "'
+2025-11-19 15:50:06,864 - INFO - UPDATED row 869:
+2025-11-19 15:50:06,864 - INFO -   -> OLD text:    'Data ashitse, nagize nkuko mama yari yampanuye.'
+2025-11-19 15:50:06,865 - INFO -   -> NEW text:    'Ashitse, nagize nkuko mama yari yampanuye.'
+2025-11-19 15:50:06,865 - INFO -   -> Added French:  'Quand elle est arrivée, j'ai fait comme ma mère m'avait conseillé'
+2025-11-19 15:50:06,868 - INFO - UPDATED row 1039:
+2025-11-19 15:50:06,869 - INFO -   -> Text:        'Kigeme ati: «Urakoze wewe umunkuyeko, yari anjwigirije iyo utaba hafi.»' (unchanged)
+2025-11-19 15:50:06,869 - INFO -   -> Added French:  'Kigeme dit :" Merci de m'avoir débarrasser d'elle, ça aurait tourné mal si tu n'étais pas tout près."'
+2025-11-19 15:50:06,872 - INFO - UPDATED row 1021:
+2025-11-19 15:50:06,872 - INFO -   -> Text:        'N’ingene inyama zayo ziryoha kandi zoroshe! Woyankira kimwe gusa: batayiteguye neza, imota nabi.' (unchanged)
+2025-11-19 15:50:06,872 - INFO -   -> Added French:  'Leur viande est bon et douce ! La seule chose qui pourrait te faire détester ça c'est : le fait qu'on l'a mal préparé,il sent mauvais.'
+2025-11-19 15:50:06,876 - INFO - UPDATED row 893:
+2025-11-19 15:50:06,876 - INFO -   -> OLD text:    'Amakenga aba menshi, aca yiva inyuma ahenura urugi, arinjira.Asanga ibirago biriko birasha, urusenge na TWO rugira rufatwe.'
+2025-11-19 15:50:06,877 - INFO -   -> NEW text:    'Amakenga aba menshi, aca yiva inyuma ahenura urugi, arinjira.Asanga ibirago biriko birasha, urusenge narwo rugira rufatwe.'
+2025-11-19 15:50:06,877 - INFO -   -> Added French:  'Les doutes prennent le dessus,puis il prend tout ces forces et poussant la porte, dès l'entrée il voit le tapis qui prenait feu et le toit etait sur le point de prendre le feu.'
+2025-11-19 15:50:06,882 - INFO - UPDATED row 1072:
+2025-11-19 15:50:06,883 - INFO -   -> Text:        'Asanga iraso rirajojota. Akubitiza akajisho hasi, abona ya mbugita. Aca aramuhanagura ya maraso yongera aramuvura.' (unchanged)
+2025-11-19 15:50:06,883 - INFO -   -> Added French:  'Il constatant qu'elle saignait. En jetant un œil par dessous,il voyant le couteau. Il l'a lavé tout son sang et la soigner'
+2025-11-19 15:50:06,886 - INFO - UPDATED row 593:
+2025-11-19 15:50:06,887 - INFO -   -> Text:        'Ariko ivyo vyose kugeza unomusi vyinshi vyarahindutse kubera haje ISHURE SHINGIRO' (unchanged)
+2025-11-19 15:50:06,887 - INFO -   -> Added French:  'Désormais beaucoup des choses ont changé depuis l'arrivée de l'école fondamentale'
+2025-11-19 15:50:06,890 - INFO - UPDATED row 781:
+2025-11-19 15:50:06,891 - INFO -   -> Text:        'Mu ci ni ho ikawa bayamura bakayijana ku masoko abegereye.' (unchanged)
+2025-11-19 15:50:06,892 - INFO -   -> Added French:  'Pendant l'été c'est là où on cueille le café et l'amenant à des marchés près'
+2025-11-19 15:50:06,893 - INFO - Processing file: French_To_Kirundi.csv
+2025-11-19 15:50:06,896 - INFO - ADDING new row 1228: 'niyumva neza mwiki gitondo.'
+2025-11-19 15:50:06,897 - WARNING - DUPLICATE (skipping): 'umugambi waheze.' from French_To_Kirundi.csv already exists in master.
+2025-11-19 15:50:06,898 - WARNING - DUPLICATE (skipping): 'ntaco bitwaye.' from French_To_Kirundi.csv already exists in master.
+2025-11-19 15:50:06,899 - WARNING - DUPLICATE (skipping): 'muri abagwaneza.' from French_To_Kirundi.csv already exists in master.
+2025-11-19 15:50:06,900 - WARNING - DUPLICATE (skipping): 'Ivuriro riri kure yo ngaha.' from French_To_Kirundi.csv already exists in master.
+2025-11-19 15:50:06,901 - WARNING - DUPLICATE (skipping): 'ndakunda akazi kanje.' from French_To_Kirundi.csv already exists in master.
+2025-11-19 15:50:06,902 - WARNING - DUPLICATE (skipping): 'ndiko ndanywa icayi gishushe.' from French_To_Kirundi.csv already exists in master.
+2025-11-19 15:50:06,903 - INFO - ADDING new row 1229: 'Data wanje ni umurimyi.'
+2025-11-19 15:50:06,904 - WARNING - DUPLICATE (skipping): 'umwana ariko ararira.' from French_To_Kirundi.csv already exists in master.
+2025-11-19 15:50:06,905 - INFO - ADDING new row 1230: 'nkeneye ifu n'isukari.'
+2025-11-19 15:50:06,905 - INFO - ADDING new row 1231: 'ndiko ndafata ivya mugitondo.'
+2025-11-19 15:50:06,906 - WARNING - DUPLICATE (skipping): 'abana barakina hanze.' from French_To_Kirundi.csv already exists in master.
+2025-11-19 15:50:06,907 - WARNING - DUPLICATE (skipping): 'ngiye kukazi.' from French_To_Kirundi.csv already exists in master.
+2025-11-19 15:50:06,908 - WARNING - DUPLICATE (skipping): 'uyu muhingamo ni mwiza.' from French_To_Kirundi.csv already exists in master.
+2025-11-19 15:50:06,909 - INFO - ADDING new row 1232: 'ngiye ku kibanza c'Ikarashishi.'
+2025-11-19 15:50:06,910 - WARNING - DUPLICATE (skipping): 'Ijoro ryiza.' from French_To_Kirundi.csv already exists in master.
+2025-11-19 15:50:06,911 - WARNING - DUPLICATE (skipping): 'mwaramutse, mumeze gute?' from French_To_Kirundi.csv already exists in master.
+2025-11-19 15:50:06,912 - INFO - Processing file: French_To_Kirundi(2).csv
+2025-11-19 15:50:06,916 - INFO - ADDING new row 1233: 'ijwi ry'imikuba ziraruhura'
+2025-11-19 15:50:06,918 - INFO - ADDING new row 1234: 'ndi muburuhuko'
+2025-11-19 15:50:06,918 - INFO - ADDING new row 1235: 'imodoka isa nubururu'
+2025-11-19 15:50:06,919 - INFO - ADDING new row 1236: 'uba hehe?'
+2025-11-19 15:50:06,920 - INFO - ADDING new row 1237: 'umugwi wakoze neza cane'
+2025-11-19 15:50:06,921 - INFO - ADDING new row 1238: 'ntegerezwa kugura umukate'
+2025-11-19 15:50:06,922 - INFO - ADDING new row 1239: 'ngiye gufata imodoka inyunguruza'
+2025-11-19 15:50:06,924 - INFO - ADDING new row 1240: 'natakaje ingodo yanje'
+2025-11-19 15:50:06,926 - INFO - ADDING new row 1241: 'nfashe ingingo'
+2025-11-19 15:50:06,927 - INFO - ADDING new row 1242: 'urutonde rw'ivyigwa ruri ku meza'
+2025-11-19 15:50:06,928 - INFO - ADDING new row 1243: 'nicigwa gihambaye'
+2025-11-19 15:50:06,929 - INFO - ADDING new row 1244: 'ivyakogwa biraheze'
+2025-11-19 15:50:06,931 - INFO - ADDING new row 1245: 'uravuga icongereza'
+2025-11-19 15:50:06,932 - INFO - ADDING new row 1246: 'ijoro ritanga icigwa'
+2025-11-19 15:50:06,933 - INFO - ADDING new row 1247: 'bakwita gute?'
+2025-11-19 15:50:06,934 - INFO - ADDING new row 1248: 'ngiye noze amasahani'
+2025-11-19 15:50:06,935 - INFO - ADDING new row 1249: 'nikibazo kigoye'
+2025-11-19 15:50:06,936 - INFO - ADDING new row 1250: 'ndeka jenyene'
+2025-11-19 15:50:06,937 - INFO - ADDING new row 1251: 'nikuberiki ushavuye?'
+2025-11-19 15:50:06,938 - INFO - ADDING new row 1252: 'ndakunda kwoga mukiyaga'
+2025-11-19 15:50:06,939 - INFO - ADDING new row 1253: 'Ijwi ry'imikuba riraruhura'
+2025-11-19 15:50:06,940 - INFO - ADDING new row 1254: 'Arakora imyimenyerezo kenshi gashoboka'
+2025-11-19 15:50:06,942 - INFO - ADDING new row 1255: 'Ndakunda akamoto kumukate mushasha'
+2025-11-19 15:50:06,943 - INFO - ADDING new row 1256: 'Turashobora kuryohora akazi yacu'
+2025-11-19 15:50:06,944 - INFO - ADDING new row 1257: 'Niga ubuhinga nyabwonko'
+2025-11-19 15:50:06,944 - INFO - ADDING new row 1258: 'Umuriro mubwotezo biraruhura'
+2025-11-19 15:50:06,945 - INFO - ADDING new row 1259: 'Impwemu ziratosoye'
+2025-11-19 15:50:06,946 - INFO - ADDING new row 1260: 'Mwokugara iryodirisha'
+2025-11-19 15:50:06,948 - INFO - ADDING new row 1261: 'Ndacerewe'
+2025-11-19 15:50:06,950 - INFO - ADDING new row 1262: 'Iduka yoba yuguruye ?'
+2025-11-19 15:50:06,951 - INFO - ADDING new row 1263: 'Ibara nkunda ni irya urwatsi rubisi'
+2025-11-19 15:50:06,952 - INFO - ADDING new row 1264: 'Jewe mpitamwo umuceri hako notora imikate'
+2025-11-19 15:50:06,953 - INFO - ADDING new row 1265: 'Jewe ndi umunyeshure'
+2025-11-19 15:50:06,954 - INFO - ADDING new row 1266: 'Agacerere karamfasha mugukora'
+2025-11-19 15:50:06,955 - INFO - ADDING new row 1267: 'Nigute bavuga iki mugifaransa'
+2025-11-19 15:50:06,955 - INFO - ADDING new row 1268: 'Nibagiye kugura amata'
+2025-11-19 15:50:06,956 - INFO - ADDING new row 1269: 'yiruka buri gatondo'
+2025-11-19 15:50:06,957 - INFO - ADDING new row 1270: 'ingo ufungure'
+2025-11-19 15:50:06,959 - INFO - ADDING new row 1271: 'ni ururimi rugoye'
+2025-11-19 15:50:06,960 - INFO - ADDING new row 1272: 'nkunda gutambuka nyaruka'
+2025-11-19 15:50:06,962 - INFO - ADDING new row 1273: 'ngira nfungure inrya'
+2025-11-19 15:50:06,963 - INFO - ADDING new row 1274: 'uragaba'
+2025-11-19 15:50:06,964 - INFO - ADDING new row 1275: 'ni umunyempano atangaje'
+2025-11-19 15:50:06,964 - INFO - ADDING new row 1276: 'dutegerezwa gufata ingingo'
+2025-11-19 15:50:06,966 - INFO - ADDING new row 1277: 'iyi ndirimbo ni iyihe ?'
+2025-11-19 15:50:06,966 - INFO - ADDING new row 1278: 'ni icirwa nkenerwa'
+2025-11-19 15:50:06,968 - INFO - ADDING new row 1279: 'icirwa kirasanzwe'
+2025-11-19 15:50:06,969 - INFO - ADDING new row 1280: 'birihuta'
+2025-11-19 15:50:06,970 - INFO - ADDING new row 1281: 'igihe c'imbeho ni kirekire'
+2025-11-19 15:50:06,971 - INFO - ADDING new row 1282: 'ndabifurije umunezero wuzuye'
+2025-11-19 15:50:06,972 - INFO - ADDING new row 1283: 'aritonda cane'
+2025-11-19 15:50:06,973 - WARNING - DUPLICATE (skipping): 'natakaje ingodo yanje' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:06,975 - INFO - ADDING new row 1284: 'nitwa samandari'
+2025-11-19 15:50:06,976 - INFO - ADDING new row 1285: 'umuguzi ntiyashimishijwe'
+2025-11-19 15:50:06,977 - INFO - ADDING new row 1286: 'hamagara igipolisi'
+2025-11-19 15:50:06,979 - INFO - ADDING new row 1287: 'niga ubuhinga bwa none'
+2025-11-19 15:50:06,981 - INFO - ADDING new row 1288: 'Tugende mu cumba'
+2025-11-19 15:50:06,983 - INFO - ADDING new row 1289: 'Turi ku yihe tariki?'
+2025-11-19 15:50:06,984 - INFO - ADDING new row 1290: 'Ntegerezwa kurwiza imyimenyerezo'
+2025-11-19 15:50:06,986 - INFO - ADDING new row 1291: 'Nta nzoga nywa.'
+2025-11-19 15:50:06,987 - INFO - ADDING new row 1292: 'Ntute imicafu hasi.'
+2025-11-19 15:50:06,988 - INFO - ADDING new row 1293: 'Sindabizi'
+2025-11-19 15:50:06,989 - INFO - ADDING new row 1294: 'Notora ibihingurirwa iwacu.'
+2025-11-19 15:50:06,990 - WARNING - DUPLICATE (skipping): 'Niga ubuhinga nyabwonko.' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:06,992 - INFO - ADDING new row 1295: 'Murashobora gusubiza ku ntango ijambo kabanga?'
+2025-11-19 15:50:06,993 - INFO - ADDING new row 1296: 'Naraguze umuduga mushasha.'
+2025-11-19 15:50:06,994 - INFO - ADDING new row 1297: 'Umucanwa ugira uhere.'
+2025-11-19 15:50:06,997 - INFO - ADDING new row 1298: 'Izuba rirenga bwije mu ci.'
+2025-11-19 15:50:06,998 - INFO - ADDING new row 1299: 'Ngiye kuri kaminuza.'
+2025-11-19 15:50:06,999 - INFO - ADDING new row 1300: 'Abavyeyi baratunezerererwa.'
+2025-11-19 15:50:07,000 - INFO - ADDING new row 1301: 'Ni muganga ku bitaro.'
+2025-11-19 15:50:07,002 - INFO - ADDING new row 1302: 'Ndakubabariye.'
+2025-11-19 15:50:07,003 - INFO - ADDING new row 1303: 'Aravuza igitari.'
+2025-11-19 15:50:07,004 - INFO - ADDING new row 1304: 'Muba hehe?'
+2025-11-19 15:50:07,005 - INFO - ADDING new row 1305: 'Turi mu kwezi ukuhe?'
+2025-11-19 15:50:07,007 - INFO - ADDING new row 1306: 'Wame uvugisha ukuri.'
+2025-11-19 15:50:07,008 - WARNING - DUPLICATE (skipping): 'Nibagiye kugura amata' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,010 - INFO - ADDING new row 1307: 'Hangwe umuriro'
+2025-11-19 15:50:07,011 - INFO - ADDING new row 1308: 'Sinibaza'
+2025-11-19 15:50:07,012 - INFO - ADDING new row 1309: 'Ingo urye'
+2025-11-19 15:50:07,013 - WARNING - DUPLICATE (skipping): 'Dutegerezwa gufata ingingo' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,014 - INFO - ADDING new row 1310: 'Wari gukota iki mukibanza canje?'
+2025-11-19 15:50:07,014 - INFO - ADDING new row 1311: 'Umwana ararize'
+2025-11-19 15:50:07,015 - INFO - ADDING new row 1312: 'Inyoni ziririmba neza'
+2025-11-19 15:50:07,015 - INFO - ADDING new row 1313: 'Umwaka mwiza'
+2025-11-19 15:50:07,015 - INFO - ADDING new row 1314: 'Ndiko ndiyugumura amenyo'
+2025-11-19 15:50:07,015 - INFO - ADDING new row 1315: 'Ngendanwa yanje irihe?'
+2025-11-19 15:50:07,016 - INFO - ADDING new row 1316: 'Ndiko ndondera imfunguruzo zanje'
+2025-11-19 15:50:07,016 - INFO - ADDING new row 1317: 'Niho nzoba ndi Isha z'ine z'agatondo'
+2025-11-19 15:50:07,016 - INFO - ADDING new row 1318: 'Indoto yanje n'ugutembera'
+2025-11-19 15:50:07,016 - INFO - ADDING new row 1319: 'Nabaza ko arivyo'
+2025-11-19 15:50:07,016 - INFO - ADDING new row 1320: 'Abantu bafise umutima mwiza'
+2025-11-19 15:50:07,017 - INFO - ADDING new row 1321: 'Ngiye mubitaro'
+2025-11-19 15:50:07,017 - INFO - ADDING new row 1322: 'Bigurwa angahe'
+2025-11-19 15:50:07,017 - INFO - ADDING new row 1323: 'Agacerere karampfasha gukora'
+2025-11-19 15:50:07,017 - INFO - ADDING new row 1324: 'Dutegerezwa gutezimbere igisata cacu'
+2025-11-19 15:50:07,018 - INFO - ADDING new row 1325: 'musaza wanje araciye ubwenge'
+2025-11-19 15:50:07,021 - INFO - ADDING new row 1326: 'Murehe gute ?'
+2025-11-19 15:50:07,021 - INFO - ADDING new row 1327: 'Nkeneye muganga'
+2025-11-19 15:50:07,022 - INFO - ADDING new row 1328: 'Turi mukwezi kwa kane'
+2025-11-19 15:50:07,023 - INFO - ADDING new row 1329: 'ibisi yasinze'
+2025-11-19 15:50:07,024 - INFO - ADDING new row 1330: 'Uguhingura ivyakoreshejwe birakomeye'
+2025-11-19 15:50:07,025 - INFO - ADDING new row 1331: 'Noze mukiyaga'
+2025-11-19 15:50:07,027 - INFO - ADDING new row 1332: 'Mfise abavukanyi babiri'
+2025-11-19 15:50:07,028 - INFO - ADDING new row 1333: 'Abavyeyi baratwirata'
+2025-11-19 15:50:07,029 - WARNING - DUPLICATE (skipping): 'Nitwa samandari' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,030 - INFO - ADDING new row 1334: 'Sintahura'
+2025-11-19 15:50:07,031 - INFO - ADDING new row 1335: 'Tuje kunywa kamwe iyi joro'
+2025-11-19 15:50:07,033 - INFO - ADDING new row 1336: 'Ni itsinzi rikomeye'
+2025-11-19 15:50:07,034 - INFO - ADDING new row 1337: 'Ibiro biri hagati mugisagara'
+2025-11-19 15:50:07,034 - INFO - ADDING new row 1338: 'Naguze ivyamwa mwisoko'
+2025-11-19 15:50:07,035 - INFO - ADDING new row 1339: 'Yambu'
+2025-11-19 15:50:07,036 - INFO - ADDING new row 1340: 'Mfise itiro'
+2025-11-19 15:50:07,037 - INFO - ADDING new row 1341: 'Mfise basazanje babiri'
+2025-11-19 15:50:07,039 - INFO - ADDING new row 1342: 'Ndiko nywa icayi gishushe.'
+2025-11-19 15:50:07,040 - WARNING - DUPLICATE (skipping): 'Dutegerezwa gufata ingingo' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,043 - INFO - ADDING new row 1343: 'Ibitaro biri kure yo ngaha.'
+2025-11-19 15:50:07,044 - INFO - ADDING new row 1344: 'Ibicupa bitabora bironona ibahari'
+2025-11-19 15:50:07,046 - INFO - ADDING new row 1345: 'Birazimvye cane.'
+2025-11-19 15:50:07,047 - INFO - ADDING new row 1346: 'Niho nzoba ndi isaha zine.'
+2025-11-19 15:50:07,048 - WARNING - DUPLICATE (skipping): 'Ndeka jenyene.' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,048 - INFO - ADDING new row 1347: 'Turi mu kwezi kwa kangahe.'
+2025-11-19 15:50:07,049 - INFO - ADDING new row 1348: 'Iyahe genekerezo ?'
+2025-11-19 15:50:07,049 - INFO - ADDING new row 1349: 'amazi akanye'
+2025-11-19 15:50:07,049 - INFO - ADDING new row 1350: 'Ngiye kubitaro'
+2025-11-19 15:50:07,050 - INFO - ADDING new row 1351: 'Ntegerezwa gukora ejo'
+2025-11-19 15:50:07,050 - INFO - ADDING new row 1352: 'Nta nzoga nwa'
+2025-11-19 15:50:07,051 - INFO - ADDING new row 1353: 'Uburundi ni igihugu ciza'
+2025-11-19 15:50:07,052 - INFO - ADDING new row 1354: 'Murakoze cane'
+2025-11-19 15:50:07,053 - INFO - ADDING new row 1355: 'Nda nshonje ubu'
+2025-11-19 15:50:07,054 - INFO - ADDING new row 1356: 'Ndarwaye'
+2025-11-19 15:50:07,054 - INFO - ADDING new row 1357: 'Insiguro yari itomoye'
+2025-11-19 15:50:07,055 - INFO - ADDING new row 1358: 'Nimuhamagare inyamiramabi!'
+2025-11-19 15:50:07,056 - INFO - ADDING new row 1359: 'ndagiye mukibanza cokwinonorer imitsi!'
+2025-11-19 15:50:07,056 - INFO - ADDING new row 1360: 'Uyu mwaka ni mwiza.'
+2025-11-19 15:50:07,057 - INFO - ADDING new row 1361: 'Ni umunyatugenegenekazi w'umunyempano.'
+2025-11-19 15:50:07,057 - INFO - ADDING new row 1362: 'Ndakunda kino gihugu.'
+2025-11-19 15:50:07,059 - INFO - ADDING new row 1363: 'Uno munsi harashushe gose.'
+2025-11-19 15:50:07,060 - INFO - ADDING new row 1364: 'Ndakeneye imiti.'
+2025-11-19 15:50:07,061 - INFO - ADDING new row 1365: 'Ntimute imyanda hasi.'
+2025-11-19 15:50:07,062 - INFO - ADDING new row 1366: 'Biraruhura cane.'
+2025-11-19 15:50:07,063 - INFO - ADDING new row 1367: 'Ndiko ndaraba gusa, murakoze.'
+2025-11-19 15:50:07,064 - WARNING - DUPLICATE (skipping): 'Birihuta.' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,065 - INFO - ADDING new row 1368: 'Ndanyotewe.'
+2025-11-19 15:50:07,066 - WARNING - DUPLICATE (skipping): 'Ni ururimi rugoye.' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,067 - INFO - ADDING new row 1369: 'Mufise umutima mwiza.'
+2025-11-19 15:50:07,068 - INFO - ADDING new row 1370: 'Hari imibu myinshi.'
+2025-11-19 15:50:07,068 - INFO - ADDING new row 1371: 'Nafashe ingingo.'
+2025-11-19 15:50:07,069 - INFO - ADDING new row 1372: 'Kazoza ntikazwi neza.'
+2025-11-19 15:50:07,070 - INFO - ADDING new row 1373: 'Nashaka agakawa.'
+2025-11-19 15:50:07,071 - INFO - ADDING new row 1374: 'ndashaka kuzoja i Paris.'
+2025-11-19 15:50:07,071 - INFO - ADDING new row 1375: 'Izuba rirasayengana uno musi'
+2025-11-19 15:50:07,072 - INFO - ADDING new row 1376: 'araririmba indirimbo.'
+2025-11-19 15:50:07,073 - INFO - ADDING new row 1377: 'Woshobora kusigurira mu buryo bwagutse'
+2025-11-19 15:50:07,073 - WARNING - DUPLICATE (skipping): 'Birihuta' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,074 - INFO - ADDING new row 1378: 'nifuza amazi'
+2025-11-19 15:50:07,074 - INFO - ADDING new row 1379: 'Turakunda indirimbo'
+2025-11-19 15:50:07,074 - INFO - ADDING new row 1380: 'Ntegerezwa kuciyumvirako'
+2025-11-19 15:50:07,076 - INFO - ADDING new row 1381: 'N'iciyumviro ciza'
+2025-11-19 15:50:07,077 - INFO - ADDING new row 1382: 'Ubwizigirwa buragoye'
+2025-11-19 15:50:07,078 - INFO - ADDING new row 1383: 'Ndakunda  imicungwe'
+2025-11-19 15:50:07,079 - INFO - ADDING new row 1384: 'N'umugenzi wanje(umukobwa)'
+2025-11-19 15:50:07,079 - INFO - ADDING new row 1385: 'Ariko aranyonga imodoka'
+2025-11-19 15:50:07,080 - INFO - ADDING new row 1386: 'Ufise uburebure bungana gute?'
+2025-11-19 15:50:07,080 - INFO - ADDING new row 1387: 'Musanzanje n'umuririmvyi'
+2025-11-19 15:50:07,081 - INFO - ADDING new row 1388: 'Igihe cimbeho ni kirekire kandi kirakanye'
+2025-11-19 15:50:07,081 - INFO - ADDING new row 1389: 'Tubana n'uruganda ruhingura imikate'
+2025-11-19 15:50:07,081 - WARNING - DUPLICATE (skipping): 'Nibagiye kugura amata' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,081 - INFO - ADDING new row 1390: 'Ifirigo ikanyisha iragaragara'
+2025-11-19 15:50:07,082 - INFO - ADDING new row 1391: 'Ndakunda urubura'
+2025-11-19 15:50:07,082 - INFO - ADDING new row 1392: 'Narahuye n'abantu bashasha'
+2025-11-19 15:50:07,083 - INFO - ADDING new row 1393: 'Iki gikorwa kirarambira.'
+2025-11-19 15:50:07,084 - INFO - ADDING new row 1394: 'Hari ikintu kizimbutse ufise?'
+2025-11-19 15:50:07,084 - INFO - ADDING new row 1395: 'Ndahimbawe no guhura namwe'
+2025-11-19 15:50:07,085 - INFO - ADDING new row 1396: 'Ibiharuro biragoye'
+2025-11-19 15:50:07,086 - INFO - ADDING new row 1397: 'Vuga buhoro buhoro'
+2025-11-19 15:50:07,087 - INFO - ADDING new row 1398: 'Sinakunze kino gitabo.'
+2025-11-19 15:50:07,087 - INFO - ADDING new row 1399: 'Ndiko ndondera uburiro .'
+2025-11-19 15:50:07,088 - WARNING - DUPLICATE (skipping): 'Ingo ufungure' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,088 - INFO - ADDING new row 1400: 'N'ikirimi kigoye'
+2025-11-19 15:50:07,088 - INFO - ADDING new row 1401: 'Ndagikosora ubu nyene'
+2025-11-19 15:50:07,089 - WARNING - DUPLICATE (skipping): 'Ibitaro biri kure yo ngaha' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,089 - INFO - ADDING new row 1402: 'Nivyiza ku magara'
+2025-11-19 15:50:07,090 - INFO - ADDING new row 1403: 'Bazokora ubukwe mu mwaka uza'
+2025-11-19 15:50:07,090 - INFO - ADDING new row 1404: 'Ariko akora imyimenyerezo ngorora mubiri'
+2025-11-19 15:50:07,091 - INFO - ADDING new row 1405: 'Ndashaka ikawa'
+2025-11-19 15:50:07,091 - INFO - ADDING new row 1406: 'Mbabarira'
+2025-11-19 15:50:07,093 - INFO - ADDING new row 1407: 'Iyonkuru ni nkenegwa'
+2025-11-19 15:50:07,093 - INFO - ADDING new row 1408: 'Vuga buhoro'
+2025-11-19 15:50:07,094 - INFO - ADDING new row 1409: 'Isabukuru nziza'
+2025-11-19 15:50:07,095 - INFO - ADDING new row 1410: 'Umukoresha wanje arababaye'
+2025-11-19 15:50:07,095 - INFO - ADDING new row 1411: 'Inkombe zikiyaga ziraruhura'
+2025-11-19 15:50:07,096 - INFO - ADDING new row 1412: 'Navyutse isaha cumi na zibiri'
+2025-11-19 15:50:07,096 - INFO - ADDING new row 1413: 'Uzovuge ukuri igihe cose'
+2025-11-19 15:50:07,096 - INFO - ADDING new row 1414: 'Ubuzima bufise ibitangaza vyinshi'
+2025-11-19 15:50:07,096 - WARNING - DUPLICATE (skipping): 'Aravuza igitari' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,097 - INFO - ADDING new row 1415: 'Ukora akahe kazi ?'
+2025-11-19 15:50:07,097 - INFO - ADDING new row 1416: 'Inama yungururijwe ejo.'
+2025-11-19 15:50:07,097 - INFO - ADDING new row 1417: 'Biraryoshe'
+2025-11-19 15:50:07,098 - INFO - ADDING new row 1418: 'Ubuzima ni bwiza cane ku gwego rwo hejuru.'
+2025-11-19 15:50:07,098 - INFO - ADDING new row 1419: 'Niyihe ngingo ya mbere ya ivyigwa?'
+2025-11-19 15:50:07,098 - INFO - ADDING new row 1420: 'Ndavyibutse ubu'
+2025-11-19 15:50:07,098 - INFO - ADDING new row 1421: 'Jewe ntegerezwa gukora imyimenyerezo myinshi'
+2025-11-19 15:50:07,099 - WARNING - DUPLICATE (skipping): 'N'iciyumviro ciza' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,099 - INFO - ADDING new row 1422: 'Uburundi n'igihugu ciza'
+2025-11-19 15:50:07,099 - INFO - ADDING new row 1423: 'Jewe ngiye gufata itagisi'
+2025-11-19 15:50:07,099 - INFO - ADDING new row 1424: 'Jewe ngiye muri kaminuza'
+2025-11-19 15:50:07,100 - WARNING - DUPLICATE (skipping): 'Muba hehe?' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,100 - INFO - ADDING new row 1425: 'Inzu irasukuye ubu'
+2025-11-19 15:50:07,101 - WARNING - DUPLICATE (skipping): 'N'ikibazo kigoye' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,101 - INFO - ADDING new row 1426: 'Murihangana'
+2025-11-19 15:50:07,102 - INFO - ADDING new row 1427: 'Jewe nkeneye impanuro'
+2025-11-19 15:50:07,102 - INFO - ADDING new row 1428: 'Jewe mfise basazanje babiri'
+2025-11-19 15:50:07,103 - INFO - ADDING new row 1429: 'Mawe ariko arategura imfungurwa zo mwijoro'
+2025-11-19 15:50:07,103 - INFO - ADDING new row 1430: 'Mawe n'umwigisha'
+2025-11-19 15:50:07,104 - INFO - ADDING new row 1431: 'Jewe nshaka kwiga igifaransa'
+2025-11-19 15:50:07,104 - INFO - ADDING new row 1432: 'Umva musore'
+2025-11-19 15:50:07,104 - INFO - ADDING new row 1433: 'Insiguro yari yumvikana.'
+2025-11-19 15:50:07,105 - INFO - ADDING new row 1434: 'Mfise imyaka mirongo ibiri.'
+2025-11-19 15:50:07,105 - INFO - ADDING new row 1435: 'Nshaka gufungura inrya.'
+2025-11-19 15:50:07,105 - INFO - ADDING new row 1436: 'Hariko hagwa imvura nyinshi.'
+2025-11-19 15:50:07,106 - INFO - ADDING new row 1437: 'Ndakeneye kuruhuka.'
+2025-11-19 15:50:07,106 - INFO - ADDING new row 1438: 'Ariko arakora ikinga.'
+2025-11-19 15:50:07,106 - INFO - ADDING new row 1439: 'Turi giheki?'
+2025-11-19 15:50:07,107 - INFO - ADDING new row 1440: 'Fata umwanya ugomba.'
+2025-11-19 15:50:07,107 - INFO - ADDING new row 1441: 'Ibara nkunda niry'urwatsi.'
+2025-11-19 15:50:07,107 - INFO - ADDING new row 1442: 'Ndatakaye.'
+2025-11-19 15:50:07,108 - INFO - ADDING new row 1443: 'Umwaka mushasha!'
+2025-11-19 15:50:07,108 - INFO - ADDING new row 1444: 'Ni umugenzi wanje.'
+2025-11-19 15:50:07,108 - INFO - ADDING new row 1445: 'ndemezanya ico ciyumviro'
+2025-11-19 15:50:07,108 - INFO - ADDING new row 1446: 'Yambaye ikanzu itukura'
+2025-11-19 15:50:07,109 - INFO - ADDING new row 1447: 'ndagwaye'
+2025-11-19 15:50:07,109 - WARNING - DUPLICATE (skipping): 'nitwa samandari' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,109 - INFO - ADDING new row 1448: 'ni icigwa gikomeye'
+2025-11-19 15:50:07,110 - INFO - ADDING new row 1449: 'twaguranye ibiharuro vyacu'
+2025-11-19 15:50:07,110 - INFO - ADDING new row 1450: 'n'icivugo ciza c'urukundo'
+2025-11-19 15:50:07,110 - INFO - ADDING new row 1451: 'n'akazi gakorerwa hamwe nabandi'
+2025-11-19 15:50:07,111 - INFO - ADDING new row 1452: 'Ndiko ndafata imfunguro yomu gitondo'
+2025-11-19 15:50:07,111 - INFO - ADDING new row 1453: 'Dutegerezwa kugenda kare'
+2025-11-19 15:50:07,111 - INFO - ADDING new row 1454: 'inyabwonko yanje irikwega'
+2025-11-19 15:50:07,112 - INFO - ADDING new row 1455: 'ndagerageza imisi yose kuba kw'isaha'
+2025-11-19 15:50:07,112 - INFO - ADDING new row 1456: 'Ndakeneye impanuro'
+2025-11-19 15:50:07,112 - INFO - ADDING new row 1457: 'ndakeneye ifu n'isukari'
+2025-11-19 15:50:07,112 - INFO - ADDING new row 1458: 'imfungurwa yari iryoshe'
+2025-11-19 15:50:07,113 - INFO - ADDING new row 1459: 'Avyuka kare cane.'
+2025-11-19 15:50:07,113 - INFO - ADDING new row 1460: 'Yari imfungurwa iryoshe'
+2025-11-19 15:50:07,113 - WARNING - DUPLICATE (skipping): 'umugambi waheze' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,114 - INFO - ADDING new row 1461: 'ndiko numviriza indirimbo.'
+2025-11-19 15:50:07,114 - INFO - ADDING new row 1462: 'Jewe ndi mushiki wa Kagabo.'
+2025-11-19 15:50:07,114 - INFO - ADDING new row 1463: 'None wewe ntubona ko batubeshe?'
+2025-11-19 15:50:07,115 - INFO - ADDING new row 1464: 'Imana twizeye irahambaye'
+2025-11-19 15:50:07,115 - INFO - ADDING new row 1465: 'Umushaha Wiwe warakomeretse.'
+2025-11-19 15:50:07,115 - INFO - ADDING new row 1466: 'Ibihe bigoye nivyo bitera abantu gukomera'
+2025-11-19 15:50:07,116 - INFO - ADDING new row 1467: 'Uzonzanire akajumbu niwagaruka.'
+2025-11-19 15:50:07,116 - WARNING - DUPLICATE (skipping): 'Nahuye nabantu bashasha' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,117 - INFO - ADDING new row 1468: 'Tuzoja kumusozi mu mpera y'iyi ndwi'
+2025-11-19 15:50:07,117 - INFO - ADDING new row 1469: 'Ndiko ndaraba gusa, Urakoze'
+2025-11-19 15:50:07,118 - INFO - ADDING new row 1470: 'Numva bigendeka aka gatondo'
+2025-11-19 15:50:07,119 - INFO - ADDING new row 1471: 'Nrwaho Umuriro!'
+2025-11-19 15:50:07,119 - INFO - ADDING new row 1472: 'Inyenyeri ziraka mw'ijoro'
+2025-11-19 15:50:07,119 - INFO - ADDING new row 1473: 'Mumbarire kuba nacerewe'
+2025-11-19 15:50:07,120 - INFO - ADDING new row 1474: 'Ugire indoto nziza'
+2025-11-19 15:50:07,120 - WARNING - DUPLICATE (skipping): 'Muba hehe?' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,120 - INFO - ADDING new row 1475: 'Mawe ariko arategura imfungurwa'
+2025-11-19 15:50:07,121 - INFO - ADDING new row 1476: 'Dutegerezwa gukingira ibidukikije'
+2025-11-19 15:50:07,121 - INFO - ADDING new row 1477: 'Ibikoko biba mumazi birabangamiwe'
+2025-11-19 15:50:07,121 - INFO - ADDING new row 1478: 'Ndiko ndiga ikirundi'
+2025-11-19 15:50:07,122 - INFO - ADDING new row 1479: 'Nibagiye.'
+2025-11-19 15:50:07,122 - WARNING - DUPLICATE (skipping): 'Ndakubabariye' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,122 - INFO - ADDING new row 1480: 'Akayaga ntikagira agatotsi'
+2025-11-19 15:50:07,123 - WARNING - DUPLICATE (skipping): 'Ingo ufungure' from French_To_Kirundi(2).csv already exists in master.
+2025-11-19 15:50:07,163 - INFO - --- Merge Complete ---
+2025-11-19 15:50:07,163 - INFO - Updated 14 existing rows (corrections/translations).
+2025-11-19 15:50:07,163 - INFO - Added 253 new sentences.
+2025-11-19 15:50:07,183 - INFO - SUCCESS! Your main file '../Kirundi_Dataset/metadata.csv' has been saved.
