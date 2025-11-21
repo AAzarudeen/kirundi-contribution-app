@@ -1,0 +1,219 @@
+/* Dark Mode Styles */
+
+/* Compact Dark Mode Button Styling */
+#dark-mode-toggle {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff !important;
+}
+
+.dark #dark-mode-toggle {
+  background-color: #374151 !important;
+}
+
+/* Icon animations - rotate and fade */
+/* Light mode: Show MOON (click to go to dark) */
+#theme-toggle-sun {
+  opacity: 0;
+  transform: rotate(180deg) scale(0.5);
+}
+
+.dark #theme-toggle-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Dark mode: Show SUN (click to go to light) */
+#theme-toggle-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.dark #theme-toggle-moon {
+  opacity: 0;
+  transform: rotate(-180deg) scale(0.5);
+}
+
+/* Smooth transitions for icons */
+#theme-toggle-sun,
+#theme-toggle-moon {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Root variables for easy theme switching */
+:root {
+  --bg-primary: #f9fafb;
+  --bg-secondary: #ffffff;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --card-bg: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+.dark {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --border-color: #374151;
+  --card-bg: #1f2937;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Apply dark mode to body */
+.dark body {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+}
+
+/* Dark mode for cards */
+.dark .card-modern,
+.dark .bg-white {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Dark mode for text */
+.dark .text-gray-800,
+.dark .text-gray-900 {
+  color: var(--text-primary) !important;
+}
+
+.dark .text-gray-600,
+.dark .text-gray-700 {
+  color: var(--text-secondary) !important;
+}
+
+/* Dark mode for inputs and textareas */
+.dark input[type="text"],
+.dark textarea {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #f9fafb !important;
+}
+
+/* Dark mode for Kirundi phrase display */
+.dark #kirundi-phrase {
+  background-color: #065f46 !important;
+  border-color: #10b981 !important;
+  color: #f9fafb !important;
+}
+
+/* Dark mode for French sentence display (Medium mode) */
+.dark #french-sentence {
+  color: #93c5fd !important;
+}
+
+.dark #french-sentence::before {
+  background-color: #1e3a8a !important;
+}
+
+.dark input[type="text"]::placeholder,
+.dark textarea::placeholder {
+  color: #9ca3af !important;
+}
+
+.dark input[type="text"]:focus,
+.dark textarea:focus {
+  border-color: #60a5fa !important;
+  background-color: #4b5563 !important;
+}
+
+/* Dark mode for borders */
+.dark .border-gray-200,
+.dark .border-gray-300 {
+  border-color: var(--border-color) !important;
+}
+
+/* Dark mode for backgrounds */
+.dark .bg-gray-50 {
+  background-color: #374151 !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: #4b5563 !important;
+}
+
+/* Dark mode for success/error messages */
+.dark .bg-green-100 {
+  background-color: #065f46 !important;
+}
+
+.dark .text-green-700 {
+  color: #6ee7b7 !important;
+}
+
+.dark .border-green-400 {
+  border-color: #10b981 !important;
+}
+
+.dark .bg-red-100 {
+  background-color: #7f1d1d !important;
+}
+
+.dark .text-red-700 {
+  color: #fca5a5 !important;
+}
+
+.dark .border-red-400 {
+  border-color: #ef4444 !important;
+}
+
+.dark .bg-blue-100 {
+  background-color: #1e3a8a !important;
+}
+
+.dark .text-blue-700,
+.dark .text-blue-800 {
+  color: #93c5fd !important;
+}
+
+.dark .border-blue-400 {
+  border-color: #3b82f6 !important;
+}
+
+/* Dark mode for AI suggestion box */
+.dark .bg-gradient-to-r.from-blue-50 {
+  background: linear-gradient(to right, #1e3a8a, #312e81) !important;
+}
+
+.dark .border-blue-500 {
+  border-color: #3b82f6 !important;
+}
+
+.dark .text-blue-600 {
+  color: #93c5fd !important;
+}
+
+/* Dark mode for header */
+.dark header .bg-white\/95 {
+  background-color: rgba(31, 41, 55, 0.95) !important;
+}
+
+/* Dark mode for footer */
+.dark footer {
+  background-color: #111827 !important;
+  border-top-color: #374151 !important;
+}
+
+/* Dark mode for progress bars */
+.dark .bg-gray-200 {
+  background-color: #4b5563 !important;
+}
+
+/* Dark mode for kbd elements */
+.dark kbd {
+  background-color: #374151 !important;
+  border-color: #4b5563 !important;
+  color: #f9fafb !important;
+}
+
+/* Smooth transition for dark mode */
+body,
+.card-modern,
+.bg-white,
+input,
+textarea,
+button {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

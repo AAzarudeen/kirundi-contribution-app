@@ -625,7 +625,9 @@ async function loadMediumData() {
   try {
     let frenchPromptsLoaded = false;
     try {
-      const frenchResponse = await fetch("./french_prompts.txt");
+      const frenchResponse = await fetch(
+        "https://sama-ndari.github.io/kirundi-contribution-app/french_prompts.txt"
+      );
       if (frenchResponse.ok) {
         const frenchText = await frenchResponse.text();
         frenchPrompts = frenchText
@@ -2016,4 +2018,37 @@ document.addEventListener("DOMContentLoaded", function () {
   // App is ready
   console.log("Kirundi Contribution App loaded successfully!");
   updateLanguageUI();
+
+  // Initialize dark mode from localStorage
+  initializeDarkMode();
 });
+
+// Dark Mode Toggle Function
+function toggleDarkMode() {
+  const html = document.documentElement;
+  const isDark = html.classList.contains("dark");
+
+  if (isDark) {
+    html.classList.remove("dark");
+    localStorage.setItem("darkMode", "false");
+  } else {
+    html.classList.add("dark");
+    localStorage.setItem("darkMode", "true");
+  }
+
+  console.log(`Dark mode ${isDark ? "disabled" : "enabled"}`);
+}
+
+// Initialize dark mode from localStorage
+function initializeDarkMode() {
+  const darkMode = localStorage.getItem("darkMode");
+  const html = document.documentElement;
+
+  // Only enable dark mode if explicitly set by user
+  if (darkMode === "true") {
+    html.classList.add("dark");
+  } else {
+    // Default to light mode
+    html.classList.remove("dark");
+  }
+}
