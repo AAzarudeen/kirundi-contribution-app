@@ -2117,8 +2117,8 @@ function updateGamification() {
     {
       min: 0,
       icon: "🌱",
-      titleEn: "Umutangura (Beginner)",
-      titleFr: "Umutangura (Débutant)",
+      titleEn: "Inyuka (Beginner)",
+      titleFr: "Inyuka (Débutant)",
     },
     {
       min: 10,
