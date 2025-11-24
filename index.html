@@ -14,6 +14,7 @@
     />
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <link rel="stylesheet" href="static/styles.css" />
     <link rel="stylesheet" href="static/buttons.css" />
     <link rel="stylesheet" href="static/darkmode.css" />
@@ -254,6 +255,89 @@
               pour aider à construire notre jeu de données Kirundi IA
             </p>
 
+            <!-- Gamification Rank Card (Advanced) -->
+            <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 mb-8 shadow-xl max-w-2xl mx-auto relative overflow-hidden group hover:shadow-2xl transition-all duration-300">
+              <!-- Background decoration -->
+              <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-yellow-100 dark:bg-yellow-900/30 rounded-full opacity-50 blur-2xl group-hover:scale-110 transition-transform duration-700"></div>
+              
+              <div class="relative z-10">
+                <div class="flex flex-col md:flex-row items-center justify-between mb-6">
+                    <div class="text-center md:text-left mb-4 md:mb-0">
+                        <p class="text-gray-500 dark:text-gray-400 text-xs uppercase tracking-wider font-bold mb-1" data-translate="yourRank">Votre Rang / Iteka Ryawe</p>
+                        <div class="flex items-center justify-center md:justify-start gap-3">
+                            <div class="text-5xl filter drop-shadow-md animate-bounce-slow" id="user-rank-icon">🌱</div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900 dark:text-white leading-tight" id="user-rank-title">Umutangura (Beginner)</h3>
+                                <p class="text-sm text-yellow-600 dark:text-yellow-400 font-medium">
+                                    <span id="total-contribution-count" class="text-lg font-bold">0</span> <span data-translate="contributions">Contributions</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Next Rank Info -->
+                    <div class="w-full md:w-auto order-2 md:order-none text-center md:text-right bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 md:p-3 border border-gray-100 dark:border-gray-600">
+                        <div class="flex flex-col md:flex-col items-center md:items-end justify-center md:justify-end gap-1 md:gap-0">
+                            <div class="flex items-center justify-center md:block gap-2 md:gap-0">
+                                <p class="text-xs text-gray-400 dark:text-gray-400 uppercase font-semibold" data-translate="nextRank">Prochain Rang:</p>
+                                <div class="text-sm font-bold text-gray-700 dark:text-gray-200 md:mb-1" id="next-rank-title">Umukozi</div>
+                            </div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400"><span id="contributions-left" class="font-bold text-blue-600 dark:text-blue-400">10</span> <span data-translate="toGo">restants</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-4 mb-8 overflow-hidden shadow-inner relative">
+                    <div id="rank-progress-bar" class="bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 h-4 rounded-full transition-all duration-1000 ease-out relative" style="width: 0%">
+                        <div class="absolute top-0 left-0 w-full h-full bg-white opacity-20 animate-pulse"></div>
+                    </div>
+                    <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center text-[10px] font-bold text-gray-900 dark:text-gray-200 pointer-events-none drop-shadow-md">
+                        <span id="progress-percentage">0%</span>
+                    </div>
+                </div>
+
+                <!-- Ranks Timeline -->
+                <div class="relative px-2">
+                    <!-- Connecting Line -->
+                    <div class="absolute top-4 left-4 right-4 h-1 bg-gray-200 dark:bg-gray-700 -z-10 rounded"></div>
+                    
+                    <div class="flex justify-between items-start">
+                        <!-- Rank 1 -->
+                        <div class="flex flex-col items-center gap-2 rank-step group/step" data-min="0">
+                            <div class="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-lg transition-all duration-300 ring-4 ring-white dark:ring-gray-800 z-10 shadow-sm group-hover/step:scale-110">🌱</div>
+                            <span class="text-[10px] font-bold text-gray-400 uppercase mt-1">0</span>
+                        </div>
+                        <!-- Rank 2 -->
+                        <div class="flex flex-col items-center gap-2 rank-step group/step" data-min="10">
+                            <div class="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-lg transition-all duration-300 ring-4 ring-white dark:ring-gray-800 z-10 shadow-sm group-hover/step:scale-110">🔨</div>
+                            <span class="text-[10px] font-bold text-gray-400 uppercase mt-1">10</span>
+                        </div>
+                        <!-- Rank 3 -->
+                        <div class="flex flex-col items-center gap-2 rank-step group/step" data-min="50">
+                            <div class="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-lg transition-all duration-300 ring-4 ring-white dark:ring-gray-800 z-10 shadow-sm group-hover/step:scale-110">🚀</div>
+                            <span class="text-[10px] font-bold text-gray-400 uppercase mt-1">50</span>
+                        </div>
+                        <!-- Rank 4 -->
+                        <div class="flex flex-col items-center gap-2 rank-step group/step" data-min="100">
+                            <div class="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-lg transition-all duration-300 ring-4 ring-white dark:ring-gray-800 z-10 shadow-sm group-hover/step:scale-110">⭐</div>
+                            <span class="text-[10px] font-bold text-gray-400 uppercase mt-1">100</span>
+                        </div>
+                        <!-- Rank 5 -->
+                        <div class="flex flex-col items-center gap-2 rank-step group/step" data-min="500">
+                            <div class="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-lg transition-all duration-300 ring-4 ring-white dark:ring-gray-800 z-10 shadow-sm group-hover/step:scale-110">👑</div>
+                            <span class="text-[10px] font-bold text-gray-400 uppercase mt-1">500</span>
+                        </div>
+                        <!-- Rank 6 -->
+                        <div class="flex flex-col items-center gap-2 rank-step group/step" data-min="1000">
+                            <div class="w-9 h-9 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-lg transition-all duration-300 ring-4 ring-white dark:ring-gray-800 z-10 shadow-sm group-hover/step:scale-110">🦁</div>
+                            <span class="text-[10px] font-bold text-gray-400 uppercase mt-1">1K</span>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
             <div class="grid gap-6 md:gap-8">
               <!-- Easy Level Button -->
               <button
@@ -402,19 +486,10 @@
 
             <!-- Game UI -->
             <div id="game-ui" class="hidden">
-              <!-- Progress -->
-              <div class="mb-6">
-                <div class="flex justify-between text-sm text-gray-600 mb-2">
-                  <span id="easy-progress-label">Progrès</span>
-                  <span id="progress-text">0 / 20</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    id="progress-bar"
-                    class="bg-green-500 h-2 rounded-full transition-all duration-300"
-                    style="width: 0%"
-                  ></div>
-                </div>
+              <!-- Session Counter (Infinite Mode) -->
+              <div class="mb-6 text-center">
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-1" data-translate="sessionCounter">Translations in this session:</p>
+                <span id="progress-text" class="font-bold text-green-600 dark:text-green-400 text-3xl">0</span>
               </div>
 
               <!-- Kirundi Phrase -->
@@ -635,6 +710,20 @@
                   </div>
                 </div>
               </div>
+              
+              <!-- Save & Submit Button (Visible when count > 0) - Outside input container -->
+              <div id="easy-submit-container" class="mt-6 pt-6 border-t border-gray-200 hidden">
+                <button
+                  onclick="showCompletion()"
+                  class="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-4 px-6 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+                  </svg>
+                  <span>💾 <span data-translate="saveAndSubmit">Enregistrer et Soumettre</span></span> (<span id="easy-count-badge">0</span>)</span>
+                </button>
+                <p class="text-xs text-gray-500 dark:text-gray-400 text-center mt-2" data-translate="submitAnytime">You can submit anytime, even with just 1 translation!</p>
+              </div>
             </div>
             <!-- End of game-ui -->
 
@@ -751,25 +840,11 @@
                 </p>
               </div>
 
-              <!-- Progress -->
-              <div class="mb-6">
-                <div class="flex justify-between items-center mb-2">
-                  <span
-                    id="medium-progress-label"
-                    class="text-sm font-medium text-blue-700"
-                    >Progrès</span
-                  >
-                  <span id="medium-progress-text" class="text-sm text-gray-600"
-                    >0 / 20</span
-                  >
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    id="medium-progress-bar"
-                    class="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                    style="width: 0%"
-                  ></div>
-                </div>
+
+              <!-- Session Counter (Infinite Mode) -->
+              <div class="mb-6 text-center">
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-1" data-translate="sessionCounter">Translations in this session:</p>
+                <span id="medium-progress-text" class="font-bold text-blue-600 dark:text-blue-400 text-3xl">0</span>
               </div>
 
               <!-- French Sentence Display -->
@@ -864,6 +939,20 @@
                 <div class="bg-gray-50 rounded-lg p-3 text-sm text-gray-600">
                   💡 <strong>Raccourcis:</strong> Ctrl+Entrée pour soumettre •
                   Échap pour ignorer
+                </div>
+                
+                <!-- Save & Submit Button (Visible when count > 0) -->
+                <div id="medium-submit-container" class="mt-6 pt-6 border-t border-gray-200 hidden">
+                  <button
+                    onclick="completeMediumMode()"
+                    class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                  >
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+                    </svg>
+                    <span>💾 <span data-translate="saveAndSubmit">Enregistrer et Soumettre</span> (<span id="medium-count-badge">0</span>)</span>
+                  </button>
+                  <p class="text-xs text-gray-500 dark:text-gray-400 text-center mt-2" data-translate="submitAnytime">You can submit anytime, even with just 1 translation!</p>
                 </div>
               </div>
             </div>

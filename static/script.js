@@ -143,29 +143,8 @@ function hideElement(id) {
   });
 
   // Add support popup translation keys to translateInterface
-  if (typeof window.translateInterface === "function") {
-    const origTranslate = window.translateInterface;
-    window.translateInterface = function () {
-      origTranslate();
-      const t = translations[currentLanguage];
-      if (t) {
-        const map = {
-          supportBtn: "supportBtn",
-          needHelp: "needHelp",
-          supportDesc: "supportDesc",
-          whatsappBtn: "whatsappBtn",
-          emailBtn: "emailBtn",
-        };
-        Object.keys(map).forEach(function (key) {
-          document
-            .querySelectorAll(`[data-translate='${key}']`)
-            .forEach(function (el) {
-              if (t[key]) el.textContent = t[key];
-            });
-        });
-      }
-    };
-  }
+  // Note: Translation is now handled by the main translateInterface function
+  // which processes all elements with data-translate attributes
 })();
 
 // Main menu functions
@@ -384,7 +363,8 @@ function showNextEasyPhrase() {
     "french-input-container"
   );
 
-  if (progress >= Math.min(batchSize, phrasesToTranslate.length)) {
+  // Infinite mode: only stop if we run out of phrases
+  if (progress >= phrasesToTranslate.length) {
     showCompletion();
     return;
   }
@@ -440,6 +420,8 @@ function approveEasySuggestion() {
 
   progress++;
   showNextEasyPhrase();
+  // Call updateProgress again after showing next phrase to ensure button is visible
+  updateProgress();
 }
 
 function startManualEdit() {
@@ -461,13 +443,26 @@ function startManualEdit() {
 }
 
 function updateProgress() {
-  const availablePhrases = Math.min(batchSize, phrasesToTranslate.length);
-  const progressPercent =
-    availablePhrases > 0 ? (progress / availablePhrases) * 100 : 0;
-  document.getElementById("progress-bar").style.width = progressPercent + "%";
-  document.getElementById(
-    "progress-text"
-  ).textContent = `${progress} / ${availablePhrases}`;
+  // Infinite mode: just show the count
+  document.getElementById("progress-text").textContent = progress;
+
+  // Update the Save & Submit button badge and visibility
+  const badge = document.getElementById("easy-count-badge");
+  const container = document.getElementById("easy-submit-container");
+  const count = userTranslations.length;
+
+  if (badge) {
+    badge.textContent = count;
+  }
+
+  // Show button only if there are translations to submit
+  if (container) {
+    if (count > 0) {
+      container.classList.remove("hidden");
+    } else {
+      container.classList.add("hidden");
+    }
+  }
 }
 
 // function nextEasyPhrase() {
@@ -736,8 +731,8 @@ async function loadMediumData() {
 }
 
 function showNextFrenchSentence() {
-  const availablePhrases = Math.min(batchSize, frenchPrompts.length);
-  if (mediumProgress >= availablePhrases) {
+  // Infinite mode: only stop if we run out of prompts
+  if (mediumProgress >= frenchPrompts.length) {
     completeMediumMode();
     return;
   }
@@ -789,15 +784,26 @@ function skipMediumSentence() {
 }
 
 function updateMediumProgress() {
-  const availablePhrases = Math.min(batchSize, frenchPrompts.length);
-  const progressPercent =
-    availablePhrases > 0 ? (mediumProgress / availablePhrases) * 100 : 0;
-  document.getElementById(
-    "medium-progress-bar"
-  ).style.width = `${progressPercent}%`;
-  document.getElementById(
-    "medium-progress-text"
-  ).textContent = `${mediumProgress} / ${availablePhrases}`;
+  // Infinite mode: just show the count
+  document.getElementById("medium-progress-text").textContent = mediumProgress;
+
+  // Update the Save & Submit button badge and visibility
+  const badge = document.getElementById("medium-count-badge");
+  const container = document.getElementById("medium-submit-container");
+  const count = userMediumTranslations.length;
+
+  if (badge) {
+    badge.textContent = count;
+  }
+
+  // Show button only if there are translations to submit
+  if (container) {
+    if (count > 0) {
+      container.classList.remove("hidden");
+    } else {
+      container.classList.add("hidden");
+    }
+  }
 }
 
 function completeMediumMode() {
@@ -845,10 +851,21 @@ function showSuccessOverlay(message) {
   document.getElementById("success-main-menu-btn").textContent =
     currentLanguage === "fr" ? "Retour au Menu Principal" : "Back to Main Menu";
   document.getElementById("success-overlay").classList.remove("hidden");
+
+  // Confetti celebration with Burundian flag colors (Green, Red, White)
+  if (typeof confetti !== "undefined") {
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ["#228B22", "#CE1126", "#FFFFFF"],
+    });
+  }
 }
 
 function closeSuccessOverlay() {
   document.getElementById("success-overlay").classList.add("hidden");
+  updateGamification(); // Update rank after submission
   backToMainMenu();
 }
 
@@ -1361,6 +1378,7 @@ function toggleLanguage() {
 
     updateLanguageUI();
     translateInterface();
+    updateGamification(); // Update rank title translation
 
     console.log("Language toggle completed successfully");
   } catch (error) {
@@ -1515,6 +1533,16 @@ function translateInterface() {
         "Fix any spelling, grammar, or other errors in the Kirundi sentence above.",
       approveSuggestion: "Approve Suggestion",
       editTranslation: "Edit Translation",
+      // Gamification & Infinite Mode
+      sessionCounter: "Translations in this session:",
+      saveAndSubmit: "Save & Submit",
+      submitAnytime: "You can submit anytime, even with just 1 translation!",
+      yourRank: "Your Rank / Iteka Ryawe",
+      totalContributions: "Total Contributions:",
+      // Rank Journey
+      nextRank: "Next Rank",
+      toGo: "to go",
+      contributions: "Contributions",
     },
     fr: {
       supportBtn: "Assistance",
@@ -1633,6 +1661,17 @@ function translateInterface() {
         "Corrigez les fautes d'orthographe, de grammaire ou autres erreurs dans la phrase kirundi ci-dessus.",
       approveSuggestion: "Approuver la Suggestion",
       editTranslation: "Modifier la Traduction",
+      // Gamification & Infinite Mode
+      sessionCounter: "Traductions dans cette session:",
+      saveAndSubmit: "Enregistrer et Soumettre",
+      submitAnytime:
+        "Vous pouvez soumettre à tout moment, même avec 1 seule traduction!",
+      yourRank: "Votre Rang / Iteka Ryawe",
+      totalContributions: "Contributions Totales:",
+      // Rank Journey
+      nextRank: "Prochain Rang",
+      toGo: "restants",
+      contributions: "Contributions",
     },
   };
 
@@ -2061,7 +2100,166 @@ function setCurrentYear() {
   }
 }
 
-// Call setCurrentYear when DOM is loaded
+// Gamification System
+function updateGamification() {
+  const totalEasy = getSubmittedPhrasesCount();
+  const totalMedium = getSubmittedFrenchPhrases().length;
+  const totalContributions = totalEasy + totalMedium;
+
+  // Update total count
+  const countElement = document.getElementById("total-contribution-count");
+  if (countElement) {
+    countElement.textContent = totalContributions;
+  }
+
+  // Rank Tiers Definition
+  const ranks = [
+    {
+      min: 0,
+      icon: "🌱",
+      titleEn: "Umutangura (Beginner)",
+      titleFr: "Umutangura (Débutant)",
+    },
+    {
+      min: 10,
+      icon: "🔨",
+      titleEn: "Umukozi (Worker)",
+      titleFr: "Umukozi (Travailleur)",
+    },
+    {
+      min: 50,
+      icon: "🚀",
+      titleEn: "Umumenyi (Skilled)",
+      titleFr: "Umumenyi (Compétent)",
+    },
+    {
+      min: 100,
+      icon: "⭐",
+      titleEn: "Inararibonye (Expert)",
+      titleFr: "Inararibonye (Expert)",
+    },
+    {
+      min: 500,
+      icon: "👑",
+      titleEn: "Intwari (Hero)",
+      titleFr: "Intwari (Héros)",
+    },
+    {
+      min: 1000,
+      icon: "🦁",
+      titleEn: "Intare (Legend)",
+      titleFr: "Intare (Légende)",
+    },
+  ];
+
+  // Determine current rank
+  let currentRankIndex = 0;
+  for (let i = ranks.length - 1; i >= 0; i--) {
+    if (totalContributions >= ranks[i].min) {
+      currentRankIndex = i;
+      break;
+    }
+  }
+
+  const currentRank = ranks[currentRankIndex];
+  const nextRank = ranks[currentRankIndex + 1];
+
+  // Update Current Rank UI
+  const iconElement = document.getElementById("user-rank-icon");
+  const titleElement = document.getElementById("user-rank-title");
+
+  if (iconElement) iconElement.textContent = currentRank.icon;
+  if (titleElement) {
+    titleElement.textContent =
+      currentLanguage === "fr" ? currentRank.titleFr : currentRank.titleEn;
+  }
+
+  // Update Next Rank UI & Progress Bar
+  const nextRankTitleElement = document.getElementById("next-rank-title");
+  const contributionsLeftElement =
+    document.getElementById("contributions-left");
+  const progressBar = document.getElementById("rank-progress-bar");
+  const progressPercentageText = document.getElementById("progress-percentage");
+
+  if (nextRank) {
+    // We have a next rank
+    const nextRankMin = nextRank.min;
+    const prevRankMin = currentRank.min;
+    const toGo = nextRankMin - totalContributions;
+
+    // Calculate percentage within the current tier
+    const progressInTier = totalContributions - prevRankMin;
+    const tierSpan = nextRankMin - prevRankMin;
+    const percentage = Math.min(
+      100,
+      Math.max(0, (progressInTier / tierSpan) * 100)
+    );
+
+    if (nextRankTitleElement) {
+      // Extract just the Kirundi name for the "Next Rank" display to keep it short
+      const nextTitle =
+        currentLanguage === "fr" ? nextRank.titleFr : nextRank.titleEn;
+      const shortTitle = nextTitle.split(" (")[0];
+      nextRankTitleElement.textContent = shortTitle;
+    }
+    if (contributionsLeftElement) contributionsLeftElement.textContent = toGo;
+    if (progressBar) progressBar.style.width = `${percentage}%`;
+    if (progressPercentageText)
+      progressPercentageText.textContent = `${Math.round(percentage)}%`;
+  } else {
+    // Max rank reached
+    if (nextRankTitleElement) nextRankTitleElement.textContent = "Max Rank";
+    if (contributionsLeftElement) contributionsLeftElement.textContent = "0";
+    if (progressBar) progressBar.style.width = "100%";
+    if (progressPercentageText) progressPercentageText.textContent = "100%";
+  }
+
+  // Update Timeline UI
+  const timelineSteps = document.querySelectorAll(".rank-step");
+  timelineSteps.forEach((step) => {
+    const min = parseInt(step.getAttribute("data-min"));
+    const circle = step.querySelector("div");
+
+    if (circle) {
+      // Reset base classes
+      circle.className =
+        "w-9 h-9 rounded-full flex items-center justify-center text-lg transition-all duration-300 ring-4 ring-white dark:ring-gray-800 z-10 shadow-sm group-hover/step:scale-110";
+
+      if (totalContributions >= min) {
+        // Completed or Active
+        if (min === currentRank.min) {
+          // Active (Current)
+          circle.classList.add(
+            "bg-green-500",
+            "text-white",
+            "scale-110",
+            "ring-green-100",
+            "dark:ring-green-900"
+          );
+        } else {
+          // Completed (Past)
+          circle.classList.add(
+            "bg-green-200",
+            "text-green-700",
+            "dark:bg-green-900",
+            "dark:text-green-300"
+          );
+        }
+      } else {
+        // Locked (Future)
+        circle.classList.add(
+          "bg-gray-200",
+          "text-gray-400",
+          "dark:bg-gray-700",
+          "dark:text-gray-500"
+        );
+      }
+    }
+  });
+}
+
+// Call setCurrentYear and updateGamification when DOM is loaded
 document.addEventListener("DOMContentLoaded", function () {
   setCurrentYear();
+  updateGamification();
 });
