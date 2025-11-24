@@ -492,20 +492,6 @@
                 <span id="progress-text" class="font-bold text-green-600 dark:text-green-400 text-3xl">0</span>
               </div>
 
-              <!-- Save & Submit Button (Visible when count > 0) - At top for visibility -->
-              <div id="easy-submit-container" class="mb-6 hidden">
-                <button
-                  onclick="showCompletion()"
-                  class="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-4 px-6 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
-                  </svg>
-                  <span>💾 <span data-translate="saveAndSubmit">Enregistrer et Soumettre</span></span> (<span id="easy-count-badge">0</span>)</span>
-                </button>
-                <p class="text-xs text-gray-500 dark:text-gray-400 text-center mt-2" data-translate="submitAnytime">Vous pouvez soumettre à tout moment, même avec 1 seule traduction!</p>
-              </div>
-
               <!-- Kirundi Phrase -->
               <div class="mb-6">
                 <label class="block text-lg font-semibold text-gray-700 mb-2"
@@ -725,6 +711,20 @@
                 </div>
               </div>
             </div>
+
+            <!-- Save & Submit Button (Visible when count > 0) -->
+            <div id="easy-submit-container" class="mb-6 hidden">
+              <button
+                onclick="showCompletion()"
+                class="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-4 px-6 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+                </svg>
+                <span>💾 <span data-translate="saveAndSubmit">Enregistrer et Soumettre</span></span> (<span id="easy-count-badge">0</span>)</span>
+              </button>
+              <p class="text-xs text-gray-500 dark:text-gray-400 text-center mt-2" data-translate="submitAnytime">Vous pouvez soumettre à tout moment, même avec 1 seule traduction!</p>
+            </div>
             <!-- End of game-ui -->
 
             <!-- Completion UI -->
@@ -847,20 +847,6 @@
                 <span id="medium-progress-text" class="font-bold text-blue-600 dark:text-blue-400 text-3xl">0</span>
               </div>
 
-              <!-- Save & Submit Button (Visible when count > 0) - At top for visibility -->
-              <div id="medium-submit-container" class="mb-6 hidden">
-                <button
-                  onclick="completeMediumMode()"
-                  class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
-                  </svg>
-                  <span>💾 <span data-translate="saveAndSubmit">Enregistrer et Soumettre</span> (<span id="medium-count-badge">0</span>)</span>
-                </button>
-                <p class="text-xs text-gray-500 dark:text-gray-400 text-center mt-2" data-translate="submitAnytime">Vous pouvez soumettre à tout moment, même avec 1 seule traduction!</p>
-              </div>
-
               <!-- French Sentence Display -->
               <div class="mb-6">
                 <label class="block text-lg font-semibold text-gray-700 mb-3"
@@ -955,6 +941,20 @@
                   Échap pour ignorer
                 </div>
               </div>
+            </div>
+
+            <!-- Save & Submit Button (Visible when count > 0) -->
+            <div id="medium-submit-container" class="mb-6 hidden">
+              <button
+                onclick="completeMediumMode()"
+                class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-xl text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+                </svg>
+                <span>💾 <span data-translate="saveAndSubmit">Enregistrer et Soumettre</span> (<span id="medium-count-badge">0</span>)</span>
+              </button>
+              <p class="text-xs text-gray-500 dark:text-gray-400 text-center mt-2" data-translate="submitAnytime">Vous pouvez soumettre à tout moment, même avec 1 seule traduction!</p>
             </div>
 
             <!-- Completion UI -->
