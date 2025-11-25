@@ -525,6 +525,7 @@ function skipEasyPhrase() {
 
 function showCompletion() {
   hideElement("game-ui");
+  hideElement("easy-submit-container");
   showElement("completion-ui");
   // Reset submit button text
   const submitButton = document.getElementById("submit-easy-button");
@@ -808,6 +809,7 @@ function updateMediumProgress() {
 
 function completeMediumMode() {
   hideElement("medium-game-ui");
+  hideElement("medium-submit-container");
   showElement("medium-completion-ui");
   // Reset submit button text
   const submitButton = document.getElementById("submit-medium-button");
