@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DiceJava</string>
+    <string name="roll_btn_text">Roll the dice</string>
+    <string name="result_label">Roll!</string>
+</resources>
